@@ -6,7 +6,9 @@ import 'package:eyvo_inventory/api/response_models/item_list_response.dart';
 import 'package:eyvo_inventory/api/response_models/load_login_response.dart';
 import 'package:eyvo_inventory/api/response_models/location_response.dart';
 import 'package:eyvo_inventory/api/response_models/login_response.dart';
+import 'package:eyvo_inventory/api/response_models/order_response.dart';
 import 'package:eyvo_inventory/api/response_models/received_items_response.dart';
+import 'package:eyvo_inventory/api/response_models/region_response.dart';
 import 'package:eyvo_inventory/api/response_models/update_good_receive_response.dart';
 import 'package:eyvo_inventory/log_data.dart/logger_data.dart';
 import 'package:flutter/material.dart';
@@ -45,8 +47,8 @@ class GlobalBloc {
     };
 
     try {
-      final res =
-          await apiService.postRequest(context, ApiService.login, bodyData);
+      final res = await apiService.postRequest(
+          context, ApiService.externalLogin, bodyData);
       LoggerData.dataLog(
           "doSignInUserWithBarcode BodyData : $bodyData -- Response : $res");
 
@@ -93,6 +95,28 @@ class GlobalBloc {
     } catch (e) {
       LoggerData.dataLog("Something went Wrong In afterFillCompanyCodeApi :$e");
       throw "Something went Wrong In afterFillCompanyCodeApi :$e";
+    }
+  }
+
+  //-------------Do Reset Password Of Login------------//
+  Future<DefaultAPIResponse> doResetPassword(BuildContext context,
+      {String? email, String? password}) async {
+    Map<String, dynamic> bodyData = {
+      'email': email,
+      'password': password,
+    };
+
+    try {
+      final res = await apiService.postRequest(
+          context, ApiService.resetPassword, bodyData);
+      LoggerData.dataLog(
+          "doResetPassword BodyData : $bodyData -- Response : $res");
+
+      final response = DefaultAPIResponse.fromJson(res!);
+      return response;
+    } catch (e) {
+      LoggerData.dataLog("Something went Wrong In doResetPassword :$e");
+      throw "Something went Wrong In doResetPassword :$e";
     }
   }
 
@@ -169,6 +193,51 @@ class GlobalBloc {
     } catch (e) {
       LoggerData.dataLog("Something went Wrong In forgotUserId :$e");
       throw "Something went Wrong In forgotUserId :$e";
+    }
+  }
+
+  //-------------Resend Otp to User------------//
+  Future<DefaultAPIResponse> doResendOtpToUser(BuildContext context,
+      {String? email, bool? resend, String? userId}) async {
+    Map<String, dynamic> bodyData = {
+      'email': email,
+      'resend': resend,
+      'userid': userId
+    };
+
+    try {
+      final res = await apiService.postRequest(
+          context, ApiService.forgotPassword, bodyData);
+      LoggerData.dataLog(
+          "doResendOtpToUser BodyData : $bodyData -- Response : $res");
+
+      final response = DefaultAPIResponse.fromJson(res!);
+      return response;
+    } catch (e) {
+      LoggerData.dataLog("Something went Wrong In doResendOtpToUser :$e");
+      throw "Something went Wrong In doResendOtpToUser :$e";
+    }
+  }
+
+  //-------------Verify User Email------------//
+  Future<DefaultAPIResponse> verifyUserEmailId(BuildContext context,
+      {String? email, String? otp}) async {
+    Map<String, dynamic> bodyData = {
+      'email': email,
+      'otp': otp,
+    };
+
+    try {
+      final res =
+          await apiService.postRequest(context, ApiService.verifyOTP, bodyData);
+      LoggerData.dataLog(
+          "verifyUserEmailId BodyData : $bodyData -- Response : $res");
+
+      final response = DefaultAPIResponse.fromJson(res!);
+      return response;
+    } catch (e) {
+      LoggerData.dataLog("Something went Wrong In verifyUserEmailId :$e");
+      throw "Something went Wrong In verifyUserEmailId :$e";
     }
   }
 
@@ -283,7 +352,7 @@ class GlobalBloc {
 
     try {
       final res = await apiService.postRequest(
-          context, ApiService.itemDetails, bodyData);
+          context, ApiService.itemsInOut, bodyData);
       LoggerData.dataLog(
           "doFetchItemInOutAPI BodyData : $bodyData -- Response : $res");
 
@@ -386,6 +455,56 @@ class GlobalBloc {
       LoggerData.dataLog(
           "Something went Wrong In doFetchConfirmReceiveGoods :$e");
       throw "Something went Wrong In doFetchConfirmReceiveGoods :$e";
+    }
+  }
+
+  //-------------Do Fetch Orders List------------//
+  Future<OrderResponse> doFetchOrdersList(
+    BuildContext context, {
+    String? uID,
+    String? search,
+    int? regionID,
+    int? pageNo,
+    int? pageSize,
+  }) async {
+    Map<String, dynamic> bodyData = {
+      'uid': uID,
+      'search': search,
+      'regionid': regionID,
+      'pageno': pageNo,
+      'pagesize': pageSize
+    };
+
+    try {
+      final res = await apiService.postRequest(
+          context, ApiService.goodReceiveOrderList, bodyData);
+      LoggerData.dataLog(
+          "doFetchOrdersList BodyData : $bodyData -- Response : $res");
+
+      final response = OrderResponse.fromJson(res!);
+      return response;
+    } catch (e) {
+      LoggerData.dataLog("Something went Wrong In doFetchOrdersList :$e");
+      throw "Something went Wrong In doFetchOrdersList :$e";
+    }
+  }
+
+  //-------------Do Fetch Region Of User------------//
+  Future<RegionResponse> doFetchRegionOfUser(
+      BuildContext context, String uID) async {
+    Map<String, dynamic> bodyData = {'uid': uID};
+
+    try {
+      final res = await apiService.postRequest(
+          context, ApiService.regionList, bodyData);
+      LoggerData.dataLog(
+          "doFetchRegionOfUser BodyData : $bodyData -- Response : $res");
+
+      final response = RegionResponse.fromJson(res!);
+      return response;
+    } catch (e) {
+      LoggerData.dataLog("Something went Wrong In doFetchRegionOfUser :$e");
+      throw "Something went Wrong In doFetchRegionOfUser :$e";
     }
   }
 }

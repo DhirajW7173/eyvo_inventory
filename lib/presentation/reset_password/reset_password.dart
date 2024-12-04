@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:eyvo_inventory/api/api_service/api_service.dart';
-import 'package:eyvo_inventory/api/response_models/default_api_response.dart';
+import 'package:eyvo_inventory/api/api_service/bloc.dart';
 import 'package:eyvo_inventory/app/app_prefs.dart';
 import 'package:eyvo_inventory/app/sizes_helper.dart';
 import 'package:eyvo_inventory/core/resources/assets_manager.dart';
@@ -60,20 +60,29 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
     final email = SharedPrefs().userEmail;
     final password = passwordController.text.trim();
 
-    Map<String, dynamic> data = {
-      'email': email,
-      'password': password,
-    };
-    final jsonResponse =
-        await apiService.postRequest(context, ApiService.resetPassword, data);
-    if (jsonResponse != null) {
-      final response = DefaultAPIResponse.fromJson(jsonResponse);
-      if (response.code == '200') {
-        navigateToScreen(context, const PasswordChangedView());
-      } else {
-        isPasswordError = true;
-        errorText = response.message.join(', ');
-      }
+    // Map<String, dynamic> data = {
+    //   'email': email,
+    //   'password': password,
+    // };
+    // final jsonResponse =
+    //     await apiService.postRequest(context, ApiService.resetPassword, data);
+    // if (jsonResponse != null) {
+    //   final response = DefaultAPIResponse.fromJson(jsonResponse);
+    //   if (response.code == '200') {
+    //     navigateToScreen(context, const PasswordChangedView());
+    //   } else {
+    //     isPasswordError = true;
+    //     errorText = response.message.join(', ');
+    //   }
+    // }
+    var res = await globalBloc.doResetPassword(context,
+        email: email, password: password);
+
+    if (res.code == '200') {
+      navigateToScreen(context, const PasswordChangedView());
+    } else {
+      isPasswordError = true;
+      errorText = res.message.join(', ');
     }
 
     setState(() {
