@@ -76,7 +76,7 @@ class CustomTextButton extends StatelessWidget {
               textAlign: TextAlign.right,
               buttonText,
               style: getRegularStyle(
-                  color: ColorManager.lightBlue, fontSize: FontSize.s16),
+                  color: ColorManager.lightBlue, fontSize: FontSize.s14),
             ),
           ),
         ],
