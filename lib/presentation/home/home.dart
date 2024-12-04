@@ -16,7 +16,6 @@ import 'package:eyvo_inventory/core/widgets/custom_card_item.dart';
 import 'package:eyvo_inventory/core/widgets/custom_list_tile.dart';
 import 'package:eyvo_inventory/core/widgets/progress_indicator.dart';
 import 'package:eyvo_inventory/core/widgets/title_header.dart';
-import 'package:eyvo_inventory/log_data.dart/logger_data.dart';
 import 'package:eyvo_inventory/presentation/change_password/change_password.dart';
 import 'package:eyvo_inventory/presentation/item_details/item_details.dart';
 import 'package:eyvo_inventory/presentation/item_list/item_list.dart';
@@ -68,70 +67,17 @@ class _HomeViewState extends State<HomeView> {
     setState(() {
       isLoading = true;
     });
-    // Map<String, dynamic> data = {
-    //   'uid': SharedPrefs().uID,
-    // };
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.dashboard, data);
-    // if (jsonResponse != null) {
-    //   final response = DashboardResponse.fromJson(jsonResponse);
-    //   if (response.code == '200') {
-    //     setState(() {
-    //       var dataList = jsonResponse['data'] as String;
-    //       List<dynamic> data = jsonDecode(dataList);
-    //       for (var item in data) {
-    //         item.forEach((key, value) {
-    //           if (value is bool && value == true) {
-    //             if (key != AppStrings.apiKeyRegion &&
-    //                 key != AppStrings.apiKeyEditRegion &&
-    //                 key != AppStrings.apiKeyLocation &&
-    //                 key != AppStrings.apiKeyEditLocation) {
-    //               items.add(key);
-    //             }
-    //           }
-    //         });
-    //       }
-
-    //       if (response.data.isNotEmpty) {
-    //         SharedPrefs().selectedRegionID = response.data[0].regionId;
-    //         SharedPrefs().selectedLocationID = response.data[0].locationId;
-    //         selectRegionTitle = response.data[0].regionLabelName;
-    //         selectedRegion = response.data[0].regionName;
-    //         selectLocationTitle = response.data[0].locationLabelName;
-    //         selectedLocation = response.data[0].locationName;
-    //         isRegionEnabled = response.data[0].region;
-    //         isRegionEditable = response.data[0].regionEdit;
-    //         isLocationEnabled = response.data[0].location;
-    //         isLocationEditable = response.data[0].locationEdit;
-    //         isScanItemsEnabled = response.data[0].scanYourItem;
-    //         isListItemsEnabled = response.data[0].listAllItems;
-    //         isGREnabled = response.data[0].gr;
-    //         SharedPrefs().decimalPlaces = response.data[0].decimalPlaces;
-    //         isPermissionDenied = (!isRegionEnabled &&
-    //                 !isLocationEnabled &&
-    //                 !isScanItemsEnabled &&
-    //                 !isListItemsEnabled &&
-    //                 !isGREnabled)
-    //             ? true
-    //             : false;
-    //       }
-    //     });
-    //   } else {
-    //     isError = true;
-    //     errorText = response.message.join(', ');
-    //   }
-    // }
-
-    final res =
-        await globalBloc.doFetchDashboardItem(context, SharedPrefs().uID);
-    if (res != null) {
-      final response = DashboardResponse.fromJson(res);
+    Map<String, dynamic> data = {
+      'uid': SharedPrefs().uID,
+    };
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.dashboard, data);
+    if (jsonResponse != null) {
+      final response = DashboardResponse.fromJson(jsonResponse);
       if (response.code == '200') {
         setState(() {
-          var dataList = res['data'] as String;
-
+          var dataList = jsonResponse['data'] as String;
           List<dynamic> data = jsonDecode(dataList);
-
           for (var item in data) {
             item.forEach((key, value) {
               if (value is bool && value == true) {
@@ -174,6 +120,59 @@ class _HomeViewState extends State<HomeView> {
         errorText = response.message.join(', ');
       }
     }
+
+    // final res =
+    //     await globalBloc.doFetchDashboardItem(context, SharedPrefs().uID);
+    // if (res != null) {
+    //   final response = DashboardResponse.fromJson(res);
+    //   if (response.code == '200') {
+    //     setState(() {
+    //       var dataList = res['data'] as String;
+
+    //       List<dynamic> data = jsonDecode(dataList);
+
+    //       for (var item in data) {
+    //         item.forEach((key, value) {
+    //           if (value is bool && value == true) {
+    //             if (key != AppStrings.apiKeyRegion &&
+    //                 key != AppStrings.apiKeyEditRegion &&
+    //                 key != AppStrings.apiKeyLocation &&
+    //                 key != AppStrings.apiKeyEditLocation) {
+    //               items.add(key);
+    //             }
+    //           }
+    //         });
+    //       }
+
+    //       if (response.data.isNotEmpty) {
+    //         SharedPrefs().selectedRegionID = response.data[0].regionId;
+    //         SharedPrefs().selectedLocationID = response.data[0].locationId;
+    //         selectRegionTitle = response.data[0].regionLabelName;
+    //         selectedRegion = response.data[0].regionName;
+    //         selectLocationTitle = response.data[0].locationLabelName;
+    //         selectedLocation = response.data[0].locationName;
+    //         isRegionEnabled = response.data[0].region;
+    //         isRegionEditable = response.data[0].regionEdit;
+    //         isLocationEnabled = response.data[0].location;
+    //         isLocationEditable = response.data[0].locationEdit;
+    //         isScanItemsEnabled = response.data[0].scanYourItem;
+    //         isListItemsEnabled = response.data[0].listAllItems;
+    //         isGREnabled = response.data[0].gr;
+    //         SharedPrefs().decimalPlaces = response.data[0].decimalPlaces;
+    //         isPermissionDenied = (!isRegionEnabled &&
+    //                 !isLocationEnabled &&
+    //                 !isScanItemsEnabled &&
+    //                 !isListItemsEnabled &&
+    //                 !isGREnabled)
+    //             ? true
+    //             : false;
+    //       }
+    //     });
+    //   } else {
+    //     isError = true;
+    //     errorText = response.message.join(', ');
+    //   }
+    // }
 
     setState(() {
       isLoading = false;
@@ -236,94 +235,19 @@ class _HomeViewState extends State<HomeView> {
       backgroundColor: ColorManager.primary,
       appBar: AppBar(
         backgroundColor: ColorManager.darkBlue,
-        title: Text(AppStrings.dashboard,
-            style: getBoldStyle(
-                color: ColorManager.white, fontSize: FontSize.s27)),
+        title: Text(
+          AppStrings.dashboard,
+          style:
+              getBoldStyle(color: ColorManager.white, fontSize: FontSize.s18),
+        ),
         leading: IconButton(
-          icon: Image.asset(ImageAssets.menu),
+          icon: Image.asset(ImageAssets.menu, width: 20, height: 20),
           onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
           },
         ),
       ),
-      drawer: Drawer(
-        backgroundColor: ColorManager.light3,
-        child: Column(
-          children: <Widget>[
-            SizedBox(height: topPadding + 20),
-            Image.asset(ImageAssets.splashLogo, width: 120, height: 97),
-            const SizedBox(height: 40),
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Container(
-                height: 370,
-                decoration: BoxDecoration(
-                    color: ColorManager.white,
-                    border: Border.all(color: ColorManager.grey4, width: 1.0),
-                    borderRadius: BorderRadius.circular(8)),
-                child: Column(
-                  children: [
-                    Expanded(
-                      child: ListView.separated(
-                          padding: EdgeInsets.zero,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: menuItems.length,
-                          separatorBuilder: (context, index) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 0.0),
-                                child: Container(
-                                  height: 1.5,
-                                  decoration: BoxDecoration(
-                                    color: ColorManager.primary,
-                                  ),
-                                ),
-                              ),
-                          itemBuilder: (context, index) {
-                            return MenuItemListTile(
-                              title: menuItems[index],
-                              imageString: ImageAssets.leftArrowIcon,
-                              onTap: () {
-                                navigateFromSideMenuAsPerSelectedTitle(
-                                    menuItems[index]);
-                              },
-                            );
-                          }),
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        logoutUser();
-                      },
-                      child: SizedBox(
-                        height: 80,
-                        width: displayWidth(context),
-                        child: Column(
-                          children: [
-                            Container(height: 1, color: ColorManager.grey6),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(ImageAssets.logoutIcon),
-                                const SizedBox(width: 10),
-                                Text(AppStrings.logout,
-                                    style: getSemiBoldStyle(
-                                        color: ColorManager.orange,
-                                        fontSize: FontSize.s22_5))
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-      // ),
+      drawer: buildDrawerWidget(topPadding),
       body: isLoading
           ? const Center(child: CustomProgressIndicator())
           : isPermissionDenied
@@ -572,6 +496,86 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
+    );
+  }
+
+  Widget buildDrawerWidget(double topPadding) {
+    return Drawer(
+      backgroundColor: ColorManager.light3,
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: topPadding + 20),
+          Image.asset(ImageAssets.splashLogo, width: 120, height: 97),
+          const SizedBox(height: 40),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Container(
+              height: 370,
+              decoration: BoxDecoration(
+                  color: ColorManager.white,
+                  border: Border.all(color: ColorManager.grey4, width: 1.0),
+                  borderRadius: BorderRadius.circular(8)),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.separated(
+                      padding: EdgeInsets.zero,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: menuItems.length,
+                      separatorBuilder: (context, index) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                        child: Container(
+                          height: 1.5,
+                          decoration: BoxDecoration(
+                            color: ColorManager.primary,
+                          ),
+                        ),
+                      ),
+                      itemBuilder: (context, index) {
+                        return MenuItemListTile(
+                          title: menuItems[index],
+                          imageString: ImageAssets.leftArrowIcon,
+                          onTap: () {
+                            navigateFromSideMenuAsPerSelectedTitle(
+                                menuItems[index]);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      logoutUser();
+                    },
+                    child: SizedBox(
+                      height: 80,
+                      width: displayWidth(context),
+                      child: Column(
+                        children: [
+                          Container(height: 1, color: ColorManager.grey6),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(ImageAssets.logoutIcon),
+                              const SizedBox(width: 10),
+                              Text(AppStrings.logout,
+                                  style: getSemiBoldStyle(
+                                      color: ColorManager.orange,
+                                      fontSize: FontSize.s22_5))
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

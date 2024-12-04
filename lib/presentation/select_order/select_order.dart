@@ -62,60 +62,60 @@ class _SelectOrderViewState extends State<SelectOrderView> {
       isLoadMore = isLoadingMoreItems;
     });
 
-    // Map<String, dynamic> data = {
-    //   'uid': SharedPrefs().uID,
-    //   'search': searchController.text,
-    //   'regionid': SharedPrefs().selectedRegionID,
-    //   'pageno': page,
-    //   'pagesize': AppConstants.pageSize
-    // };
-    //  final jsonResponse = await apiService.postRequest(
-    //       context, ApiService.goodReceiveOrderList, data);
-    //   if (jsonResponse != null) {
-    //     final response = OrderResponse.fromJson(jsonResponse);
-    //     if (response.code == '200') {
-    //       setState(() {
-    //         isError = false;
-    //         if (isLoadingMoreItems) {
-    //           orderItems.addAll(response.data);
-    //         } else {
-    //           orderItems = response.data;
-    //         }
-    //         totalRecords = response.totalRecords;
-    //         page++;
-    //       });
-    //     } else {
-    //       orderItems = [];
-    //       isError = true;
-    //       errorText = response.message.join(', ');
-    //     }
-    //   }
-
-    var res = await globalBloc.doFetchOrdersList(
-      context,
-      uID: SharedPrefs().uID,
-      search: searchController.text,
-      regionID: SharedPrefs().selectedRegionID,
-      pageNo: page,
-      pageSize: AppConstants.pageSize,
-    );
-
-    if (res.code == '200') {
-      setState(() {
-        isError = false;
-        if (isLoadingMoreItems) {
-          orderItems.addAll(res.data);
-        } else {
-          orderItems = res.data;
-        }
-        totalRecords = res.totalRecords;
-        page++;
-      });
-    } else {
-      orderItems = [];
-      isError = true;
-      errorText = res.message.join(', ');
+    Map<String, dynamic> data = {
+      'uid': SharedPrefs().uID,
+      'search': searchController.text,
+      'regionid': SharedPrefs().selectedRegionID,
+      'pageno': page,
+      'pagesize': AppConstants.pageSize
+    };
+    final jsonResponse = await apiService.postRequest(
+        context, ApiService.goodReceiveOrderList, data);
+    if (jsonResponse != null) {
+      final response = OrderResponse.fromJson(jsonResponse);
+      if (response.code == '200') {
+        setState(() {
+          isError = false;
+          if (isLoadingMoreItems) {
+            orderItems.addAll(response.data);
+          } else {
+            orderItems = response.data;
+          }
+          totalRecords = response.totalRecords;
+          page++;
+        });
+      } else {
+        orderItems = [];
+        isError = true;
+        errorText = response.message.join(', ');
+      }
     }
+
+    // var res = await globalBloc.doFetchOrdersList(
+    //   context,
+    //   uID: SharedPrefs().uID,
+    //   search: searchController.text,
+    //   regionID: SharedPrefs().selectedRegionID,
+    //   pageNo: page,
+    //   pageSize: AppConstants.pageSize,
+    // );
+
+    // if (res.code == '200') {
+    //   setState(() {
+    //     isError = false;
+    //     if (isLoadingMoreItems) {
+    //       orderItems.addAll(res.data);
+    //     } else {
+    //       orderItems = res.data;
+    //     }
+    //     totalRecords = res.totalRecords;
+    //     page++;
+    //   });
+    // } else {
+    //   orderItems = [];
+    //   isError = true;
+    //   errorText = res.message.join(', ');
+    // }
 
     setState(() {
       isLoading = false;

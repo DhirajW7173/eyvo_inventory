@@ -22,7 +22,7 @@ class OrDivider extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: Container(
-              height: 50,
+              height: 40,
               padding:
                   const EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
               decoration: BoxDecoration(
@@ -34,7 +34,7 @@ class OrDivider extends StatelessWidget {
                 child: Text(
                   AppStrings.or,
                   style: getRegularStyle(
-                      color: ColorManager.lightGrey1, fontSize: FontSize.s22_5),
+                      color: ColorManager.lightGrey1, fontSize: FontSize.s16),
                 ),
               ),
             ),

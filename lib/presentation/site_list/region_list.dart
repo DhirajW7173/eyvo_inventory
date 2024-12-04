@@ -43,33 +43,33 @@ class _RegionListViewState extends State<RegionListView> {
       isLoading = true;
     });
 
-    // Map<String, dynamic> data = {
-    //   'uid': SharedPrefs().uID,
-    // };
-    //final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.regionList, data);
-    // if (jsonResponse != null) {
-    //   final response = RegionResponse.fromJson(jsonResponse);
-    //   if (response.code == '200') {
-    //     setState(() {
-    //       regionItems = response.data;
-    //     });
-    //   } else {
-    //     isError = true;
-    //     errorText = response.message.join(', ');
-    //   }
-    // }
-
-    var res = await globalBloc.doFetchRegionOfUser(context, SharedPrefs().uID);
-
-    if (res.code == '200') {
-      setState(() {
-        regionItems = res.data;
-      });
-    } else {
-      isError = true;
-      errorText = res.message.join(', ');
+    Map<String, dynamic> data = {
+      'uid': SharedPrefs().uID,
+    };
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.regionList, data);
+    if (jsonResponse != null) {
+      final response = RegionResponse.fromJson(jsonResponse);
+      if (response.code == '200') {
+        setState(() {
+          regionItems = response.data;
+        });
+      } else {
+        isError = true;
+        errorText = response.message.join(', ');
+      }
     }
+
+    // var res = await globalBloc.doFetchRegionOfUser(context, SharedPrefs().uID);
+
+    // if (res.code == '200') {
+    //   setState(() {
+    //     regionItems = res.data;
+    //   });
+    // } else {
+    //   isError = true;
+    //   errorText = res.message.join(', ');
+    // }
 
     setState(() {
       isLoading = false;
@@ -95,21 +95,24 @@ class _RegionListViewState extends State<RegionListView> {
                             borderRadius: BorderRadius.circular(8),
                             color: ColorManager.white),
                         child: Center(
-                            child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            const Spacer(),
-                            Image.asset(
-                                width: displayWidth(context) * 0.5,
-                                ImageAssets.noRecordFoundIcon),
-                            Text(errorText,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Spacer(),
+                              Image.asset(
+                                  width: displayWidth(context) * 0.5,
+                                  ImageAssets.noRecordFoundIcon),
+                              Text(
+                                errorText,
                                 style: getRegularStyle(
                                     color: ColorManager.lightGrey,
-                                    fontSize: FontSize.s17)),
-                            const Spacer()
-                          ],
-                        )),
+                                    fontSize: FontSize.s17),
+                              ),
+                              const Spacer()
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -130,17 +133,18 @@ class _RegionListViewState extends State<RegionListView> {
                                   widget.selectedTitle,
                                   style: getBoldStyle(
                                       color: ColorManager.darkBlue,
-                                      fontSize: FontSize.s31_5),
+                                      fontSize: FontSize.s27),
                                 ),
                               ),
                               const Spacer(),
                               SizedBox(
                                 height: 30,
                                 child: CustomImageButton(
-                                    imageString: ImageAssets.closeIcon,
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    }),
+                                  imageString: ImageAssets.closeIcon,
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
                               )
                             ],
                           ),
@@ -171,16 +175,17 @@ class _RegionListViewState extends State<RegionListView> {
                                   return Padding(
                                     padding: const EdgeInsets.all(0.0),
                                     child: ListTile(
-                                      title: Text(item.regionCode,
-                                          style: item.regionCode ==
-                                                  widget.selectedItem
-                                              ? getMediumStyle(
-                                                  color: ColorManager.orange2,
-                                                  fontSize: FontSize.s23_25)
-                                              : getRegularStyle(
-                                                  color:
-                                                      ColorManager.lightGrey2,
-                                                  fontSize: FontSize.s23_25)),
+                                      title: Text(
+                                        item.regionCode,
+                                        style: item.regionCode ==
+                                                widget.selectedItem
+                                            ? getMediumStyle(
+                                                color: ColorManager.orange2,
+                                                fontSize: FontSize.s20)
+                                            : getRegularStyle(
+                                                color: ColorManager.lightGrey2,
+                                                fontSize: FontSize.s20),
+                                      ),
                                       onTap: () {
                                         SharedPrefs().selectedRegion =
                                             item.regionCode;

@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 90,
+      height: 50,
       decoration: BoxDecoration(
         color: isDefault
             ? ColorManager.white
@@ -45,7 +45,7 @@ class CustomButton extends StatelessWidget {
                   : isEnabled
                       ? ColorManager.white
                       : ColorManager.darkGrey2,
-              fontSize: FontSize.s27),
+              fontSize: FontSize.s18),
         ),
       ),
     );
@@ -62,7 +62,7 @@ class CustomTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 200,
-      height: 40,
+      height: 30,
       child: Row(
         children: [
           const Spacer(),
@@ -76,7 +76,7 @@ class CustomTextButton extends StatelessWidget {
               textAlign: TextAlign.right,
               buttonText,
               style: getRegularStyle(
-                  color: ColorManager.lightBlue, fontSize: FontSize.s18),
+                  color: ColorManager.lightBlue, fontSize: FontSize.s16),
             ),
           ),
         ],
@@ -95,7 +95,11 @@ class CustomImageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       child: ElevatedButton.icon(
-        icon: Image(image: AssetImage(imageString)),
+        icon: Image(
+          image: AssetImage(imageString),
+          height: 24,
+          width: 24,
+        ),
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
@@ -114,9 +118,11 @@ class CustomIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        child: IconButton(
-            icon: Image(image: AssetImage(imageString), width: 48, height: 48),
-            onPressed: () {}));
+      child: IconButton(
+        icon: Image(image: AssetImage(imageString), width: 34, height: 34),
+        onPressed: () {},
+      ),
+    );
   }
 }
 

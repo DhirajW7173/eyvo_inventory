@@ -85,37 +85,37 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
       isLoading = true;
     });
 
-    // Map<String, dynamic> data = {
-    //   'orderid': widget.orderId.toString(),
-    // };
-    // final jsonResponse = await apiService.postRequest(
-    //     context, ApiService.goodReceiveItemList, data);
-    // if (jsonResponse != null) {
-    //   final response = ReceivedItemsResponse.fromJson(jsonResponse);
-    //   if (response.code == '200') {
-    //     setState(() {
-    //       orderItems = response.data;
-    //       isPrintEnabled = response.print;
-    //     });
-    //   } else {
-    //     isError = true;
-    //     errorText = response.message.join(', ');
-    //     isPrintEnabled = response.print;
-    //   }
-    // }
-
-    var res =
-        await globalBloc.doFetchOrderItem(context, widget.orderId.toString());
-    if (res.code == '200') {
-      setState(() {
-        orderItems = res.data;
-        isPrintEnabled = res.print;
-      });
-    } else {
-      isError = true;
-      errorText = res.message.join(', ');
-      isPrintEnabled = res.print;
+    Map<String, dynamic> data = {
+      'orderid': widget.orderId.toString(),
+    };
+    final jsonResponse = await apiService.postRequest(
+        context, ApiService.goodReceiveItemList, data);
+    if (jsonResponse != null) {
+      final response = ReceivedItemsResponse.fromJson(jsonResponse);
+      if (response.code == '200') {
+        setState(() {
+          orderItems = response.data;
+          isPrintEnabled = response.print;
+        });
+      } else {
+        isError = true;
+        errorText = response.message.join(', ');
+        isPrintEnabled = response.print;
+      }
     }
+
+    // var res =
+    //     await globalBloc.doFetchOrderItem(context, widget.orderId.toString());
+    // if (res.code == '200') {
+    //   setState(() {
+    //     orderItems = res.data;
+    //     isPrintEnabled = res.print;
+    //   });
+    // } else {
+    //   isError = true;
+    //   errorText = res.message.join(', ');
+    //   isPrintEnabled = res.print;
+    // }
 
     setState(() {
       isLoading = false;
@@ -210,50 +210,50 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
       isLoading = true;
     });
 
-    // Map<String, dynamic> data = {
-    //   "orderid": widget.orderId,
-    //   "ordernumber": widget.orderNumber,
-    //   "uid": SharedPrefs().uID,
-    //   "locationid": SharedPrefs().selectedLocationID,
-    //   "regionid": SharedPrefs().selectedRegionID,
-    //   "usersession": SharedPrefs().userSession,
-    //   "items": selectedOrderItems,
-    // };
-    // final jsonResponse = await apiService.postRequest(
-    //     context, ApiService.goodReceiveUpdate, data);
-    // if (jsonResponse != null) {
-    //   final response = UpdateGoodReceiveResponse.fromJson(jsonResponse);
-    //   setState(() {
-    //     if (response.code == '200') {
-    //       isGoodsReceived = true;
-    //       receivedGoodsNumber = response.data.grNumber;
-    //       isGenerateLabelEnabled = response.data.print;
-    //       receivedGoodsSuccessMessage = response.message.join(', ');
-    //     } else {
-    //       showErrorDialog(context, response.message.join(', '), false);
-    //     }
-    //   });
-    // }
-    var res = await globalBloc.doFetchConfirmReceiveGoods(
-      context,
-      orderId: widget.orderId,
-      orderNumber: widget.orderNumber,
-      uID: SharedPrefs().uID,
-      selectedLocationID: SharedPrefs().selectedLocationID,
-      selectedRegionID: SharedPrefs().selectedRegionID,
-      userSession: SharedPrefs().userSession,
-      itemList: selectedOrderItems,
-    );
-    setState(() {
-      if (res.code == '200') {
-        isGoodsReceived = true;
-        receivedGoodsNumber = res.data.grNumber;
-        isGenerateLabelEnabled = res.data.print;
-        receivedGoodsSuccessMessage = res.message.join(', ');
-      } else {
-        showErrorDialog(context, res.message.join(', '), false);
-      }
-    });
+    Map<String, dynamic> data = {
+      "orderid": widget.orderId,
+      "ordernumber": widget.orderNumber,
+      "uid": SharedPrefs().uID,
+      "locationid": SharedPrefs().selectedLocationID,
+      "regionid": SharedPrefs().selectedRegionID,
+      "usersession": SharedPrefs().userSession,
+      "items": selectedOrderItems,
+    };
+    final jsonResponse = await apiService.postRequest(
+        context, ApiService.goodReceiveUpdate, data);
+    if (jsonResponse != null) {
+      final response = UpdateGoodReceiveResponse.fromJson(jsonResponse);
+      setState(() {
+        if (response.code == '200') {
+          isGoodsReceived = true;
+          receivedGoodsNumber = response.data.grNumber;
+          isGenerateLabelEnabled = response.data.print;
+          receivedGoodsSuccessMessage = response.message.join(', ');
+        } else {
+          showErrorDialog(context, response.message.join(', '), false);
+        }
+      });
+    }
+    // var res = await globalBloc.doFetchConfirmReceiveGoods(
+    //   context,
+    //   orderId: widget.orderId,
+    //   orderNumber: widget.orderNumber,
+    //   uID: SharedPrefs().uID,
+    //   selectedLocationID: SharedPrefs().selectedLocationID,
+    //   selectedRegionID: SharedPrefs().selectedRegionID,
+    //   userSession: SharedPrefs().userSession,
+    //   itemList: selectedOrderItems,
+    // );
+    // setState(() {
+    //   if (res.code == '200') {
+    //     isGoodsReceived = true;
+    //     receivedGoodsNumber = res.data.grNumber;
+    //     isGenerateLabelEnabled = res.data.print;
+    //     receivedGoodsSuccessMessage = res.message.join(', ');
+    //   } else {
+    //     showErrorDialog(context, res.message.join(', '), false);
+    //   }
+    // });
 
     setState(() {
       isLoading = false;

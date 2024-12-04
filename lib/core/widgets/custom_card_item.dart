@@ -57,15 +57,16 @@ class CustomItemCardWithEdit extends StatelessWidget {
   final Color backgroundColor;
   final double cornerRadius;
   final bool isEditable;
-  const CustomItemCardWithEdit(
-      {super.key,
-      required this.imageString,
-      required this.title,
-      required this.subtitle,
-      required this.onEdit,
-      required this.backgroundColor,
-      required this.cornerRadius,
-      this.isEditable = true});
+  const CustomItemCardWithEdit({
+    super.key,
+    required this.imageString,
+    required this.title,
+    required this.subtitle,
+    required this.onEdit,
+    required this.backgroundColor,
+    required this.cornerRadius,
+    this.isEditable = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -100,12 +101,14 @@ class CustomItemCardWithEdit extends StatelessWidget {
                         title,
                         style: getSemiBoldStyle(
                             color: ColorManager.lightGrey1,
-                            fontSize: FontSize.s23_25),
+                            fontSize: FontSize.s20),
                       ),
-                      Text(subtitle,
-                          style: getRegularStyle(
-                              color: ColorManager.lightGrey2,
-                              fontSize: FontSize.s22_5)),
+                      Text(
+                        subtitle,
+                        style: getRegularStyle(
+                            color: ColorManager.lightGrey2,
+                            fontSize: FontSize.s20),
+                      ),
                     ],
                   ),
                 ),

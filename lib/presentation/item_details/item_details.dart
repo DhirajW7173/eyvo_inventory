@@ -95,54 +95,54 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
       isLoading = true;
     });
 
-    // Map<String, dynamic> data = {
-    //   "itemid": widget.itemId,
-    //   "locationid": SharedPrefs().isItemScanned
-    //       ? SharedPrefs().scannedLocationID
-    //       : SharedPrefs().selectedLocationID,
-    //   'regionid': SharedPrefs().isItemScanned
-    //       ? SharedPrefs().scannedRegionID
-    //       : SharedPrefs().selectedRegionID,
-    //   "uid": SharedPrefs().uID,
-    // };
-
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.itemDetails, data);
-    // if (jsonResponse != null) {
-    //   final response = ItemDetailsResponse.fromJson(jsonResponse);
-    //   setState(() {
-    //     if (response.code == '200') {
-    //       items = response.data;
-    //       _priceController.text = getFormattedPriceString(items[0].basePrice);
-    //       isItemEditable = items[0].itemEdit;
-    //     } else {
-    //       isError = true;
-    //       errorText = response.message.join(', ');
-    //     }
-    //   });
-    // }
-
-    var response = await globalBloc.doFetchItemDetails(
-      context,
-      itemId: '${widget.itemId}',
-      locationId: SharedPrefs().isItemScanned
+    Map<String, dynamic> data = {
+      "itemid": widget.itemId,
+      "locationid": SharedPrefs().isItemScanned
           ? SharedPrefs().scannedLocationID
           : SharedPrefs().selectedLocationID,
-      regionId: SharedPrefs().isItemScanned
+      'regionid': SharedPrefs().isItemScanned
           ? SharedPrefs().scannedRegionID
           : SharedPrefs().selectedRegionID,
-      uID: SharedPrefs().uID,
-    );
-    setState(() {
-      if (response.code == '200') {
-        items = response.data;
-        _priceController.text = getFormattedPriceString(items[0].basePrice);
-        isItemEditable = items[0].itemEdit;
-      } else {
-        isError = true;
-        errorText = response.message.join(', ');
-      }
-    });
+      "uid": SharedPrefs().uID,
+    };
+
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.itemDetails, data);
+    if (jsonResponse != null) {
+      final response = ItemDetailsResponse.fromJson(jsonResponse);
+      setState(() {
+        if (response.code == '200') {
+          items = response.data;
+          _priceController.text = getFormattedPriceString(items[0].basePrice);
+          isItemEditable = items[0].itemEdit;
+        } else {
+          isError = true;
+          errorText = response.message.join(', ');
+        }
+      });
+    }
+
+    // var response = await globalBloc.doFetchItemDetails(
+    //   context,
+    //   itemId: '${widget.itemId}',
+    //   locationId: SharedPrefs().isItemScanned
+    //       ? SharedPrefs().scannedLocationID
+    //       : SharedPrefs().selectedLocationID,
+    //   regionId: SharedPrefs().isItemScanned
+    //       ? SharedPrefs().scannedRegionID
+    //       : SharedPrefs().selectedRegionID,
+    //   uID: SharedPrefs().uID,
+    // );
+    // setState(() {
+    //   if (response.code == '200') {
+    //     items = response.data;
+    //     _priceController.text = getFormattedPriceString(items[0].basePrice);
+    //     isItemEditable = items[0].itemEdit;
+    //   } else {
+    //     isError = true;
+    //     errorText = response.message.join(', ');
+    //   }
+    // });
 
     setState(() {
       isLoading = false;
@@ -225,58 +225,58 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
       isLoading = true;
     });
 
-    // Map<String, dynamic> data = {
-    //   "itemid": widget.itemId,
-    //   "itemtype": items[0].itemType,
-    //   "locationid": SharedPrefs().isItemScanned
-    //       ? SharedPrefs().scannedLocationID
-    //       : SharedPrefs().selectedLocationID,
-    //   "isstock": items[0].isStock,
-    //   "quantity": double.parse(quantity),
-    //   "price": double.parse(price),
-    //   "adjustmentDate": _dateController.text,
-    //   "comments": _commmentsController.text,
-    //   "uid": SharedPrefs().uID,
-    //   "pageMode": modeType
-    // };
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.itemsInOut, data);
-    // if (jsonResponse != null) {
-    //   final response = DefaultAPIResponse.fromJson(jsonResponse);
-    //   setState(() {
-    //     if (response.code == '200') {
-    //       showSuccessDialog(context, ImageAssets.successfulIcon, '',
-    //           response.message.join(', '), true);
-    //     } else {
-    //       showErrorDialog(context, response.message.join(', '), false);
-    //     }
-    //   });
-    // }
-
-    var res = await globalBloc.doFetchItemInOutAPI(
-      context,
-      itemId: widget.itemId,
-      itemType: items[0].itemType,
-      locationId: SharedPrefs().isItemScanned
+    Map<String, dynamic> data = {
+      "itemid": widget.itemId,
+      "itemtype": items[0].itemType,
+      "locationid": SharedPrefs().isItemScanned
           ? SharedPrefs().scannedLocationID
           : SharedPrefs().selectedLocationID,
-      isStock: items[0].isStock,
-      quantity: double.parse(quantity),
-      price: double.parse(price),
-      adjustDate: _dateController.text,
-      comment: _commmentsController.text,
-      uID: SharedPrefs().uID,
-      mode: modeType,
-    );
+      "isstock": items[0].isStock,
+      "quantity": double.parse(quantity),
+      "price": double.parse(price),
+      "adjustmentDate": _dateController.text,
+      "comments": _commmentsController.text,
+      "uid": SharedPrefs().uID,
+      "pageMode": modeType
+    };
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.itemsInOut, data);
+    if (jsonResponse != null) {
+      final response = DefaultAPIResponse.fromJson(jsonResponse);
+      setState(() {
+        if (response.code == '200') {
+          showSuccessDialog(context, ImageAssets.successfulIcon, '',
+              response.message.join(', '), true);
+        } else {
+          showErrorDialog(context, response.message.join(', '), false);
+        }
+      });
+    }
 
-    setState(() {
-      if (res.code == '200') {
-        showSuccessDialog(context, ImageAssets.successfulIcon, '',
-            res.message.join(', '), true);
-      } else {
-        showErrorDialog(context, res.message.join(', '), false);
-      }
-    });
+    // var res = await globalBloc.doFetchItemInOutAPI(
+    //   context,
+    //   itemId: widget.itemId,
+    //   itemType: items[0].itemType,
+    //   locationId: SharedPrefs().isItemScanned
+    //       ? SharedPrefs().scannedLocationID
+    //       : SharedPrefs().selectedLocationID,
+    //   isStock: items[0].isStock,
+    //   quantity: double.parse(quantity),
+    //   price: double.parse(price),
+    //   adjustDate: _dateController.text,
+    //   comment: _commmentsController.text,
+    //   uID: SharedPrefs().uID,
+    //   mode: modeType,
+    // );
+
+    // setState(() {
+    //   if (res.code == '200') {
+    //     showSuccessDialog(context, ImageAssets.successfulIcon, '',
+    //         res.message.join(', '), true);
+    //   } else {
+    //     showErrorDialog(context, res.message.join(', '), false);
+    //   }
+    // });
 
     setState(() {
       isLoading = false;

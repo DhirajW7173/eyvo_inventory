@@ -108,7 +108,8 @@ class ApiService {
                 };
       final body = json.encode(data);
 
-      LoggerData.dataLog('Url : $url --body: $body'); //--Header : $headers
+      LoggerData.dataLog(
+          'Url : $url --Header : $headers --body: $body'); //--Header : $headers
 
       final response = await http.post(
         Uri.parse(url),

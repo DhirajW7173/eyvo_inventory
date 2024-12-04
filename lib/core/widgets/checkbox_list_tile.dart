@@ -17,7 +17,7 @@ class CustomCheckboxListTile extends StatelessWidget {
       child: Row(
         children: [
           Transform.scale(
-            scale: 1.5,
+            scale: 1,
             child: Checkbox(
               value: value,
               onChanged: onChanged,
@@ -25,14 +25,15 @@ class CustomCheckboxListTile extends StatelessWidget {
               activeColor: ColorManager.lightBlue1,
               side: BorderSide(color: ColorManager.lightBlue1, width: 1),
               shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                  borderRadius: BorderRadius.all(Radius.circular(4.0))),
             ),
           ),
           Expanded(
-              child: Container(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: title,
-          )),
+            child: Container(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: title,
+            ),
+          ),
         ],
       ),
     );

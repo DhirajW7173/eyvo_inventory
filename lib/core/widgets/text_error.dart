@@ -17,9 +17,9 @@ class ErrorTextViewBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: titleString.length >= 25
-          ? 80
+          ? 60
           : titleString.length >= 15
-              ? 60
+              ? 50
               : 40,
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(

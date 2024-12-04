@@ -108,7 +108,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 70,
       child: TextField(
         controller: controller,
         obscureText: isObscureText,
@@ -120,9 +120,10 @@ class CustomTextField extends StatelessWidget {
         ],
         spellCheckConfiguration: const SpellCheckConfiguration.disabled(),
         textCapitalization: TextCapitalization.none,
-        style: getRegularStyle(
-            color: ColorManager.grey1, fontSize: FontSize.s22_5),
+        style:
+            getRegularStyle(color: ColorManager.grey1, fontSize: FontSize.s16),
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.only(left: 10),
           prefixIcon: Padding(
               padding: const EdgeInsets.only(left: 15, right: 5),
               child: CustomIconButton(imageString: iconString)),
@@ -130,7 +131,7 @@ class CustomTextField extends StatelessWidget {
           border: OutlineInputBorder(
             borderSide: BorderSide(
               color: isValid ? ColorManager.grey2 : ColorManager.darkRed,
-              width: AppSize.s1_5,
+              width: AppSize.s1,
             ),
             borderRadius: BorderRadius.circular(AppSize.s15),
           ),
@@ -145,10 +146,10 @@ class CustomTextField extends StatelessWidget {
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           // floating label style
           floatingLabelStyle: getRegularStyle(
-              color: ColorManager.light1, fontSize: FontSize.s18),
+              color: ColorManager.light1, fontSize: FontSize.s16),
           // hint style
           hintStyle: getRegularStyle(
-              color: ColorManager.grey1, fontSize: FontSize.s18),
+              color: ColorManager.grey1, fontSize: FontSize.s16),
           // label style
           labelStyle: getRegularStyle(
               color: ColorManager.light1, fontSize: FontSize.s14),

@@ -61,36 +61,36 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
     });
     final email = emailController.text.trim();
     SharedPrefs().userEmail = email;
-    // Map<String, dynamic> data = {'email': email, 'resend': false, 'userid': ''};
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.forgotPassword, data);
-    // if (jsonResponse != null) {
-    //   final response = DefaultAPIResponse.fromJson(jsonResponse);
-    //   final message = response.message.join(', ');
-    //   if (response.code == '200') {
-    //     if (message == AppStrings.multipleEmailIDFound) {
-    //       navigateToScreen(context, const EnterUserIDView());
-    //     } else {
-    //       navigateToScreen(context, const VerifyEmailView(userName: ''));
-    //     }
-    //   } else {
-    //     isError = true;
-    //     errorText = message;
-    //   }
-    // }
-    var res =
-        await globalBloc.forgotUserPassword(context, email: email, userID: '');
-    final message = res.message.join(', ');
-    if (res.code == '200') {
-      if (message == AppStrings.multipleEmailIDFound) {
-        navigateToScreen(context, const EnterUserIDView());
+    Map<String, dynamic> data = {'email': email, 'resend': false, 'userid': ''};
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.forgotPassword, data);
+    if (jsonResponse != null) {
+      final response = DefaultAPIResponse.fromJson(jsonResponse);
+      final message = response.message.join(', ');
+      if (response.code == '200') {
+        if (message == AppStrings.multipleEmailIDFound) {
+          navigateToScreen(context, const EnterUserIDView());
+        } else {
+          navigateToScreen(context, const VerifyEmailView(userName: ''));
+        }
       } else {
-        navigateToScreen(context, const VerifyEmailView(userName: ''));
+        isError = true;
+        errorText = message;
       }
-    } else {
-      isError = true;
-      errorText = message;
     }
+    // var res =
+    //     await globalBloc.forgotUserPassword(context, email: email, userID: '');
+    // final message = res.message.join(', ');
+    // if (res.code == '200') {
+    //   if (message == AppStrings.multipleEmailIDFound) {
+    //     navigateToScreen(context, const EnterUserIDView());
+    //   } else {
+    //     navigateToScreen(context, const VerifyEmailView(userName: ''));
+    //   }
+    // } else {
+    //   isError = true;
+    //   errorText = message;
+    // }
     setState(() {
       isLoading = false;
     });

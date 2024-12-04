@@ -82,30 +82,30 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
     });
     startTimer();
 
-    // Map<String, dynamic> data = {
-    //   'email': SharedPrefs().userEmail,
-    //   'resend': true,
-    //   'userid': widget.userName
-    // };
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.forgotPassword, data);
-    // if (jsonResponse != null) {
-    //   final response = DefaultAPIResponse.fromJson(jsonResponse);
-    //   if (response.code == '200') {
-    //   } else {
-    //     isError = true;
-    //     errorText = response.message.join(', ');
-    //   }
-    // }
-
-    var res = await globalBloc.doResendOtpToUser(context,
-        email: SharedPrefs().userEmail, resend: true, userId: widget.userName);
-
-    if (res.code == '200') {
-    } else {
-      isError = true;
-      errorText = res.message.join(', ');
+    Map<String, dynamic> data = {
+      'email': SharedPrefs().userEmail,
+      'resend': true,
+      'userid': widget.userName
+    };
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.forgotPassword, data);
+    if (jsonResponse != null) {
+      final response = DefaultAPIResponse.fromJson(jsonResponse);
+      if (response.code == '200') {
+      } else {
+        isError = true;
+        errorText = response.message.join(', ');
+      }
     }
+
+    // var res = await globalBloc.doResendOtpToUser(context,
+    //     email: SharedPrefs().userEmail, resend: true, userId: widget.userName);
+
+    // if (res.code == '200') {
+    // } else {
+    //   isError = true;
+    //   errorText = res.message.join(', ');
+    // }
 
     setState(() {
       isLoading = false;
@@ -125,32 +125,32 @@ class _VerifyEmailViewState extends State<VerifyEmailView> {
         isLoading = true;
         isError = false;
       });
-      // Map<String, dynamic> data = {
-      //   'email': SharedPrefs().userEmail,
-      //   'otp': otp
-      // };
-      // final jsonResponse =
-      //     await apiService.postRequest(context, ApiService.verifyOTP, data);
-      // if (jsonResponse != null) {
-      //   final response = DefaultAPIResponse.fromJson(jsonResponse);
+      Map<String, dynamic> data = {
+        'email': SharedPrefs().userEmail,
+        'otp': otp
+      };
+      final jsonResponse =
+          await apiService.postRequest(context, ApiService.verifyOTP, data);
+      if (jsonResponse != null) {
+        final response = DefaultAPIResponse.fromJson(jsonResponse);
 
-      //   if (response.code == '200') {
-      //     navigateToScreen(context, const ResetPasswordView());
-      //   } else {
-      //     isError = true;
-      //     errorText = response.message.join(', ');
-      //   }
-      // }
-
-      var res = await globalBloc.verifyUserEmailId(context,
-          email: SharedPrefs().userEmail, otp: otp);
-
-      if (res.code == '200') {
-        navigateToScreen(context, const ResetPasswordView());
-      } else {
-        isError = true;
-        errorText = res.message.join(', ');
+        if (response.code == '200') {
+          navigateToScreen(context, const ResetPasswordView());
+        } else {
+          isError = true;
+          errorText = response.message.join(', ');
+        }
       }
+
+      // var res = await globalBloc.verifyUserEmailId(context,
+      //     email: SharedPrefs().userEmail, otp: otp);
+
+      // if (res.code == '200') {
+      //   navigateToScreen(context, const ResetPasswordView());
+      // } else {
+      //   isError = true;
+      //   errorText = res.message.join(', ');
+      // }
 
       setState(() {
         isLoading = false;

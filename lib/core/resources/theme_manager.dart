@@ -16,12 +16,13 @@ class AppTheme {
     scaffoldBackgroundColor: ColorManager.primary,
     // App bar theme
     appBarTheme: AppBarTheme(
-        centerTitle: false,
-        color: ColorManager.darkBlue,
-        elevation: AppSize.s4,
-        // shadowColor: ColorManager.primaryOpacity70,
-        titleTextStyle: getRegularStyle(
-            color: ColorManager.white, fontSize: FontSize.s22_5)),
+      centerTitle: false,
+      color: ColorManager.darkBlue,
+      elevation: AppSize.s4,
+      // shadowColor: ColorManager.primaryOpacity70,
+      titleTextStyle:
+          getRegularStyle(color: ColorManager.white, fontSize: FontSize.s18),
+    ),
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.all(27),
       focusedBorder: _border(ColorManager.blue),

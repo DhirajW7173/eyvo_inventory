@@ -18,12 +18,16 @@ class TitleHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(titleText,
-            style: getBoldStyle(
-                color: ColorManager.darkBlue, fontSize: FontSize.s31_5)),
-        Text(detailText,
-            style: getRegularStyle(
-                color: ColorManager.lightGrey, fontSize: FontSize.s17)),
+        Text(
+          titleText,
+          style: getBoldStyle(
+              color: ColorManager.darkBlue, fontSize: FontSize.s31_5),
+        ),
+        Text(
+          detailText,
+          style: getRegularStyle(
+              color: ColorManager.lightGrey, fontSize: FontSize.s17),
+        ),
       ],
     );
   }

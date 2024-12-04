@@ -66,48 +66,48 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
     final oldPassword = oldPasswordController.text.trim();
     final password = newPasswordController.text.trim();
     final userSession = SharedPrefs().userSession;
-    // Map<String, dynamic> data = {
-    //   'uid': uID,
-    //   'oldpassword': oldPassword,
-    //   'password': password,
-    //   'usersession': userSession
-    // };
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.changePassword, data);
-    // if (jsonResponse != null) {
-    //   final response = DefaultAPIResponse.fromJson(jsonResponse);
-    //   if (response.code == '200') {
-    //     setState(() {
-    //       showSuccessDialog(
-    //           context,
-    //           ImageAssets.passwordChangedImage,
-    //           AppStrings.passwordChangedTitle,
-    //           AppStrings.passwordChangedSubTitle,
-    //           false);
-    //     });
-    //   } else {
-    //     isConfirmPasswordError = true;
-    //     errorText = response.message.join(', ');
-    //   }
-    // }
-    var res = await globalBloc.doChangeUserPassword(context,
-        uID: uID,
-        oldPassword: oldPassword,
-        password: password,
-        userSession: userSession);
-    if (res.code == '200') {
-      setState(() {
-        showSuccessDialog(
-            context,
-            ImageAssets.passwordChangedImage,
-            AppStrings.passwordChangedTitle,
-            AppStrings.passwordChangedSubTitle,
-            false);
-      });
-    } else {
-      isConfirmPasswordError = true;
-      errorText = res.message.join(', ');
+    Map<String, dynamic> data = {
+      'uid': uID,
+      'oldpassword': oldPassword,
+      'password': password,
+      'usersession': userSession
+    };
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.changePassword, data);
+    if (jsonResponse != null) {
+      final response = DefaultAPIResponse.fromJson(jsonResponse);
+      if (response.code == '200') {
+        setState(() {
+          showSuccessDialog(
+              context,
+              ImageAssets.passwordChangedImage,
+              AppStrings.passwordChangedTitle,
+              AppStrings.passwordChangedSubTitle,
+              false);
+        });
+      } else {
+        isConfirmPasswordError = true;
+        errorText = response.message.join(', ');
+      }
     }
+    // var res = await globalBloc.doChangeUserPassword(context,
+    //     uID: uID,
+    //     oldPassword: oldPassword,
+    //     password: password,
+    //     userSession: userSession);
+    // if (res.code == '200') {
+    //   setState(() {
+    //     showSuccessDialog(
+    //         context,
+    //         ImageAssets.passwordChangedImage,
+    //         AppStrings.passwordChangedTitle,
+    //         AppStrings.passwordChangedSubTitle,
+    //         false);
+    //   });
+    // } else {
+    //   isConfirmPasswordError = true;
+    //   errorText = res.message.join(', ');
+    // }
 
     setState(() {
       isLoading = false;
@@ -207,11 +207,13 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
       backgroundColor: ColorManager.primary,
       appBar: AppBar(
         backgroundColor: ColorManager.darkBlue,
-        title: Text(AppStrings.changePassword,
-            style: getBoldStyle(
-                color: ColorManager.white, fontSize: FontSize.s27)),
+        title: Text(
+          AppStrings.changePassword,
+          style:
+              getBoldStyle(color: ColorManager.white, fontSize: FontSize.s18),
+        ),
         leading: IconButton(
-          icon: Image.asset(ImageAssets.backButton),
+          icon: Image.asset(ImageAssets.backButton, width: 18, height: 18),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -256,7 +258,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                             isOldPasswordError
                                 ? ErrorTextViewBox(titleString: errorText)
                                 : const SizedBox(
-                                    height: 20,
+                                    height: 10,
                                   ),
                             isOldPasswordError
                                 ? const SizedBox(height: 20)
@@ -273,7 +275,7 @@ class _ChangePasswordViewState extends State<ChangePasswordView> {
                             isPasswordError
                                 ? ErrorTextViewBox(titleString: errorText)
                                 : const SizedBox(
-                                    height: 20,
+                                    height: 10,
                                   ),
                             isPasswordError
                                 ? const SizedBox(height: 20)

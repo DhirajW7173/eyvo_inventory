@@ -60,7 +60,7 @@ TextStyle getBoldStyle({double fontSize = FontSize.s12, required Color color}) {
 
 // dotted underline semibold style
 TextStyle getDottedUnderlineSemiBoldStyle(
-    {double fontSize = FontSize.s25_5,
+    {double fontSize = FontSize.s20,
     required Color color,
     required Color lineColor}) {
   return _getDottedUnderlineStyle(fontSize, FontConstants.fontFamily, color,

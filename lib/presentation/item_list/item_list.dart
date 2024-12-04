@@ -104,57 +104,57 @@ class _ItemListViewState extends State<ItemListView> with RouteAware {
       isLoading = !isLoadingMoreItems && !isSearching;
       isLoadMore = isLoadingMoreItems;
     });
-    // Map<String, dynamic> data = {
-    //   "regionid": SharedPrefs().selectedRegionID,
-    //   "locationid": SharedPrefs().selectedLocationID,
-    //   "search": _searchController.text,
-    //   'pageno': page,
-    //   'pagesize': AppConstants.pageSize
-    // };
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.itemsListing, data);
-    // if (jsonResponse != null) {
-    //   final response = ItemListResponse.fromJson(jsonResponse);
-    //   setState(() {
-    //     if (response.code == '200') {
-    //       isError = false;
-    //       if (isLoadingMoreItems) {
-    //         listItems.addAll(response.data);
-    //       } else {
-    //         listItems = response.data;
-    //       }
-    //       totalRecords = response.totalRecords;
-    //       page++;
-    //     } else {
-    //       isError = true;
-    //       errorText = response.message.join(', ');
-    //     }
-    //   });
-    // }
-
-    var res = await globalBloc.doFetchItemList(
-      context,
-      regionId: SharedPrefs().selectedRegionID,
-      locationId: SharedPrefs().selectedLocationID,
-      search: _searchController.text,
-      pageNo: page,
-      pageSize: AppConstants.pageSize,
-    );
-    setState(() {
-      if (res.code == '200') {
-        isError = false;
-        if (isLoadingMoreItems) {
-          listItems.addAll(res.data);
+    Map<String, dynamic> data = {
+      "regionid": SharedPrefs().selectedRegionID,
+      "locationid": SharedPrefs().selectedLocationID,
+      "search": _searchController.text,
+      'pageno': page,
+      'pagesize': AppConstants.pageSize
+    };
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.itemsListing, data);
+    if (jsonResponse != null) {
+      final response = ItemListResponse.fromJson(jsonResponse);
+      setState(() {
+        if (response.code == '200') {
+          isError = false;
+          if (isLoadingMoreItems) {
+            listItems.addAll(response.data);
+          } else {
+            listItems = response.data;
+          }
+          totalRecords = response.totalRecords;
+          page++;
         } else {
-          listItems = res.data;
+          isError = true;
+          errorText = response.message.join(', ');
         }
-        totalRecords = res.totalRecords;
-        page++;
-      } else {
-        isError = true;
-        errorText = res.message.join(', ');
-      }
-    });
+      });
+    }
+
+    // var res = await globalBloc.doFetchItemList(
+    //   context,
+    //   regionId: SharedPrefs().selectedRegionID,
+    //   locationId: SharedPrefs().selectedLocationID,
+    //   search: _searchController.text,
+    //   pageNo: page,
+    //   pageSize: AppConstants.pageSize,
+    // );
+    // setState(() {
+    //   if (res.code == '200') {
+    //     isError = false;
+    //     if (isLoadingMoreItems) {
+    //       listItems.addAll(res.data);
+    //     } else {
+    //       listItems = res.data;
+    //     }
+    //     totalRecords = res.totalRecords;
+    //     page++;
+    //   } else {
+    //     isError = true;
+    //     errorText = res.message.join(', ');
+    //   }
+    // });
 
     setState(() {
       isLoading = false;

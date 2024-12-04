@@ -15,9 +15,11 @@ void showSnackBar(BuildContext context, String content) {
     ..showSnackBar(
       SnackBar(
         backgroundColor: ColorManager.green,
-        content: Text(content,
-            style: getRegularStyle(
-                color: ColorManager.white, fontSize: FontSize.s16)),
+        content: Text(
+          content,
+          style: getRegularStyle(
+              color: ColorManager.white, fontSize: FontSize.s16),
+        ),
       ),
     );
 }

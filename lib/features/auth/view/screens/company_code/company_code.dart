@@ -71,33 +71,35 @@ class _CompanyCodeViewState extends State<CompanyCodeView> {
     });
 
     final clientCode = codeController.text.trim();
-    var res = await globalBloc.afterFillCompanyCodeApi(context, clientCode);
-    // Map<String, dynamic> data = {'clientcode': clientCode};
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.clientCode, data);
-    // if (res != null) {
-    //   final response = CompanyCodeResponse.fromJson(jsonResponse);
 
-    //   if (response.code == '200') {
-    //     SharedPrefs().companyCode = response.data.clientCode;
-    //     SharedPrefs().accessKey = response.data.accessKey;
-    //     codeController.text = '';
-    //     Navigator.pushNamed(context, Routes.loginRoute);
-    //   } else {
-    //     isError = true;
-    //     errorText = response.message.join(', ');
-    //   }
-    // }
+    Map<String, dynamic> data = {'clientcode': clientCode};
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.clientCode, data);
+    if (jsonResponse != null) {
+      final response = CompanyCodeResponse.fromJson(jsonResponse);
 
-    if (res.code == '200') {
-      SharedPrefs().companyCode = res.data.clientCode;
-      SharedPrefs().accessKey = res.data.accessKey;
-      codeController.text = '';
-      Navigator.pushNamed(context, Routes.loginRoute);
-    } else {
-      isError = true;
-      errorText = res.message.join(', ');
+      if (response.code == '200') {
+        SharedPrefs().companyCode = response.data.clientCode;
+        SharedPrefs().accessKey = response.data.accessKey;
+        codeController.text = '';
+        Navigator.pushNamed(context, Routes.loginRoute);
+      } else {
+        isError = true;
+        errorText = response.message.join(', ');
+      }
     }
+
+    // var res = await globalBloc.afterFillCompanyCodeApi(context, clientCode);
+
+    // if (res.code == '200') {
+    //   SharedPrefs().companyCode = res.data.clientCode;
+    //   SharedPrefs().accessKey = res.data.accessKey;
+    //   codeController.text = '';
+    //   Navigator.pushNamed(context, Routes.loginRoute);
+    // } else {
+    //   isError = true;
+    //   errorText = res.message.join(', ');
+    // }
 
     setState(() {
       isLoading = false;
@@ -147,7 +149,7 @@ class _CompanyCodeViewState extends State<CompanyCodeView> {
                           ),
                           isError
                               ? ErrorTextViewBox(titleString: errorText)
-                              : const SizedBox(height: 50),
+                              : const SizedBox(),
                           isError
                               ? const SizedBox(height: 20)
                               : const SizedBox(),

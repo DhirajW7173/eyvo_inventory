@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:eyvo_inventory/api/api_service/api_service.dart';
 import 'package:eyvo_inventory/api/api_service/bloc.dart';
+import 'package:eyvo_inventory/api/response_models/default_api_response.dart';
 import 'package:eyvo_inventory/app/sizes_helper.dart';
 import 'package:eyvo_inventory/core/resources/assets_manager.dart';
 import 'package:eyvo_inventory/core/resources/color_manager.dart';
@@ -54,44 +55,44 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
       isLoading = true;
     });
 
-    // Map<String, dynamic> data = {
-    //   'orderid': widget.orderId,
-    //   'grnno': widget.grNo
-    // };
-    // final jsonResponse = await apiService.postRequest(
-    //     context, ApiService.goodReceivePrint, data);
-    // if (jsonResponse != null) {
-    //   final response = DefaultAPIResponse.fromJson(jsonResponse);
-    //   if (response.code == '200') {
-    //     String base64Data = response.data;
-    //     pdfBytes = base64Decode(base64Data);
-    //     final output = await getTemporaryDirectory();
-    //     final file = File("${output.path}/${widget.orderId}.pdf");
-    //     await file.writeAsBytes(pdfBytes);
-    //     setState(() {
-    //       filePath = file.path;
-    //     });
-    //   } else {
-    //     isError = true;
-    //     errorText = response.message.join(', ');
-    //   }
-    // }
-    var res = await globalBloc.doFetchPdfData(context,
-        orderId: widget.orderId, grNo: widget.grNo);
-
-    if (res.code == '200') {
-      String base64Data = res.data;
-      pdfBytes = base64Decode(base64Data);
-      final output = await getTemporaryDirectory();
-      final file = File("${output.path}/${widget.orderId}.pdf");
-      await file.writeAsBytes(pdfBytes);
-      setState(() {
-        filePath = file.path;
-      });
-    } else {
-      isError = true;
-      errorText = res.message.join(', ');
+    Map<String, dynamic> data = {
+      'orderid': widget.orderId,
+      'grnno': widget.grNo
+    };
+    final jsonResponse = await apiService.postRequest(
+        context, ApiService.goodReceivePrint, data);
+    if (jsonResponse != null) {
+      final response = DefaultAPIResponse.fromJson(jsonResponse);
+      if (response.code == '200') {
+        String base64Data = response.data;
+        pdfBytes = base64Decode(base64Data);
+        final output = await getTemporaryDirectory();
+        final file = File("${output.path}/${widget.orderId}.pdf");
+        await file.writeAsBytes(pdfBytes);
+        setState(() {
+          filePath = file.path;
+        });
+      } else {
+        isError = true;
+        errorText = response.message.join(', ');
+      }
     }
+    // var res = await globalBloc.doFetchPdfData(context,
+    //     orderId: widget.orderId, grNo: widget.grNo);
+
+    // if (res.code == '200') {
+    //   String base64Data = res.data;
+    //   pdfBytes = base64Decode(base64Data);
+    //   final output = await getTemporaryDirectory();
+    //   final file = File("${output.path}/${widget.orderId}.pdf");
+    //   await file.writeAsBytes(pdfBytes);
+    //   setState(() {
+    //     filePath = file.path;
+    //   });
+    // } else {
+    //   isError = true;
+    //   errorText = res.message.join(', ');
+    // }
     setState(() {
       isLoading = false;
     });

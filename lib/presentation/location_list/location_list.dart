@@ -41,33 +41,36 @@ class _LocationListViewState extends State<LocationListView> {
       isLoading = true;
     });
 
-    // Map<String, dynamic> data = {
-    //   'uid': SharedPrefs().uID,
-    // };
-    // final jsonResponse =
-    //     await apiService.postRequest(context, ApiService.locationList, data);
-    // if (jsonResponse != null) {
-    //   final response = LocationResponse.fromJson(jsonResponse);
-    //   if (response.code == '200') {
+    Map<String, dynamic> data = {
+      'uid': SharedPrefs().uID,
+    };
+    final jsonResponse =
+        await apiService.postRequest(context, ApiService.locationList, data);
+    if (jsonResponse != null) {
+      final response = LocationResponse.fromJson(jsonResponse);
+      if (response.code == '200') {
+        setState(() {
+          locationItems = response.data;
+        });
+      } else {
+        isError = true;
+        errorText = response.message.join(', ');
+      }
+    }
+
+    // var res = await globalBloc.doFetchLoginUserData(context, SharedPrefs().uID);
+    // if (res != null) {
+    //   var reposne = LocationResponse.fromJson(res);
+    //   if (reposne.code == '200') {
     //     setState(() {
-    //       locationItems = response.data;
+    //       locationItems = reposne.data;
     //     });
     //   } else {
     //     isError = true;
-    //     errorText = response.message.join(', ');
+    //     errorText = reposne.message.join(', ');
     //   }
     // }
 
-    var res = await globalBloc.doFetchLoginUserData(context, SharedPrefs().uID);
-
-    if (res.code == '200') {
-      setState(() {
-        locationItems = res.data;
-      });
-    } else {
-      isError = true;
-      errorText = res.message.join(', ');
-    }
     setState(() {
       isLoading = false;
     });
