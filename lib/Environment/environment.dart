@@ -1,10 +1,8 @@
 import 'package:eyvo_inventory/Environment/base_configuration.dart';
+import 'package:eyvo_inventory/Environment/common_string.dart';
 import 'package:eyvo_inventory/Environment/development_config.dart';
 import 'package:eyvo_inventory/Environment/production_config.dart';
 import 'package:eyvo_inventory/Environment/staging_config.dart';
-
-String baseUrl = "";
-String domain = "";
 
 class Environment {
   factory Environment() {
@@ -15,9 +13,9 @@ class Environment {
 
   static final Environment _singleton = Environment._internal();
 
-  static const String DEV = "DEV";
-  static const String STAGING = "STAGING";
-  static const String PROD = "PROD";
+  static const String DEV = 'DEV';
+  static const String STAGING = 'STAGING';
+  static const String PROD = 'PROD';
 
   BaseConfig? config;
 

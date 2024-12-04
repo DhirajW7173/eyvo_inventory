@@ -17,6 +17,8 @@ void main() async {
   //initialize enviroment in Logger
   LoggerData.environment = environment;
 
+  Environment().initConfig(environment);
+
   //Shared Prefs for Store user Data
   await SharedPrefs().init();
 

@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'package:eyvo_inventory/Environment/common_string.dart';
 import 'package:eyvo_inventory/api/response_models/default_api_response.dart';
 import 'package:eyvo_inventory/api/response_models/token_response.dart';
 import 'package:eyvo_inventory/app/app_prefs.dart';
@@ -12,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = "https://service.eyvo.net/eBA API 2.0";
+  // static const String baseUrl = "https://service.eyvo.net/eBA API 2.0";
   static const String clientCode = "login/clientcode";
   static const String loadLogin = "login/loadlogin";
   static const String externalLogin = "login/externalaunthenication";
@@ -62,6 +63,7 @@ class ApiService {
 
   Future<Map<String, dynamic>?> getRequest(
       BuildContext context, String endpoint, Map<String, dynamic> data) async {
+    LoggerData.dataLog("@@@@@:${baseUrl}");
     final url = Uri.encodeFull('$baseUrl/$endpoint');
     debugPrint('PS:- URL: $url');
     final token = SharedPrefs().jwtToken;
@@ -85,8 +87,9 @@ class ApiService {
 
   Future<Map<String, dynamic>?> postRequest(
       BuildContext context, String endpoint, Map<String, dynamic> data) async {
+    LoggerData.dataLog("@@@@@:${baseUrl}");
+    final url = Uri.encodeFull('$baseUrl/$endpoint');
     try {
-      final url = Uri.encodeFull('$baseUrl/$endpoint');
       debugPrint('PS:- URL: $url');
       final token = SharedPrefs().jwtToken;
       final headers = endpoint == clientCode
