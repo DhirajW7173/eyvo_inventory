@@ -294,11 +294,13 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
         backgroundColor: ColorManager.primary,
         appBar: AppBar(
           backgroundColor: ColorManager.darkBlue,
-          title: Text(AppStrings.itemDetails,
-              style: getBoldStyle(
-                  color: ColorManager.white, fontSize: FontSize.s27)),
+          title: Text(
+            AppStrings.itemDetails,
+            style:
+                getBoldStyle(color: ColorManager.white, fontSize: FontSize.s20),
+          ),
           leading: IconButton(
-            icon: Image.asset(ImageAssets.backButton),
+            icon: Image.asset(ImageAssets.backButton, width: 20, height: 20),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -455,10 +457,12 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                           ),
                                         ),
                                         const SizedBox(height: 5),
-                                        Text(items[0].description,
-                                            style: getRegularStyle(
-                                                color: ColorManager.black,
-                                                fontSize: FontSize.s14)),
+                                        Text(
+                                          items[0].description,
+                                          style: getRegularStyle(
+                                              color: ColorManager.black,
+                                              fontSize: FontSize.s14),
+                                        ),
                                         const SizedBox(height: 20),
                                         Row(
                                           children: [
@@ -487,20 +491,21 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                                           .maxCharactersForQuantity),
                                                 ],
                                                 decoration: InputDecoration(
-                                                    contentPadding:
-                                                        const EdgeInsets.all(
-                                                            20),
-                                                    labelText:
-                                                        AppStrings.quantity,
-                                                    floatingLabelBehavior:
-                                                        FloatingLabelBehavior
-                                                            .always,
-                                                    floatingLabelStyle:
-                                                        getSemiBoldStyle(
-                                                            color: ColorManager
-                                                                .lightGrey1,
-                                                            fontSize:
-                                                                FontSize.s17)),
+                                                  contentPadding:
+                                                      const EdgeInsets.only(
+                                                          left: 20),
+                                                  labelText:
+                                                      AppStrings.quantity,
+                                                  floatingLabelBehavior:
+                                                      FloatingLabelBehavior
+                                                          .always,
+                                                  floatingLabelStyle:
+                                                      getSemiBoldStyle(
+                                                          color: ColorManager
+                                                              .lightGrey1,
+                                                          fontSize:
+                                                              FontSize.s17),
+                                                ),
                                               ),
                                             ),
                                             const SizedBox(width: 10),
@@ -515,8 +520,8 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                                 readOnly: true,
                                                 decoration: InputDecoration(
                                                     contentPadding:
-                                                        const EdgeInsets.all(
-                                                            18),
+                                                        const EdgeInsets.only(
+                                                            left: 18),
                                                     suffixIcon: IconButton(
                                                         onPressed:
                                                             isItemEditable
@@ -579,8 +584,8 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                                   ],
                                                   decoration: InputDecoration(
                                                       contentPadding:
-                                                          const EdgeInsets.all(
-                                                              20),
+                                                          const EdgeInsets.only(
+                                                              left: 20),
                                                       labelText:
                                                           AppStrings.price,
                                                       floatingLabelBehavior:
@@ -616,18 +621,18 @@ class _ItemDetailsViewState extends State<ItemDetailsView> {
                                                       .maxCharactersForComment),
                                             ],
                                             decoration: InputDecoration(
-                                                contentPadding:
-                                                    const EdgeInsets.all(20),
-                                                labelText: AppStrings.comments,
-                                                floatingLabelBehavior:
-                                                    FloatingLabelBehavior
-                                                        .always,
-                                                floatingLabelStyle:
-                                                    getSemiBoldStyle(
-                                                        color: ColorManager
-                                                            .lightGrey1,
-                                                        fontSize:
-                                                            FontSize.s16)),
+                                              contentPadding:
+                                                  const EdgeInsets.only(
+                                                      left: 20),
+                                              labelText: AppStrings.comments,
+                                              floatingLabelBehavior:
+                                                  FloatingLabelBehavior.always,
+                                              floatingLabelStyle:
+                                                  getSemiBoldStyle(
+                                                      color: ColorManager
+                                                          .lightGrey1,
+                                                      fontSize: FontSize.s16),
+                                            ),
                                           ),
                                         ),
                                         const SizedBox(height: 20),

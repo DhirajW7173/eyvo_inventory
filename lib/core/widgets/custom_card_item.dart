@@ -75,20 +75,21 @@ class CustomItemCardWithEdit extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            height: 106,
+            //height: 106,
             decoration: BoxDecoration(
               color: backgroundColor,
               borderRadius: BorderRadius.circular(cornerRadius),
             ),
             padding: const EdgeInsets.all(18.0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(cornerRadius),
                   child: Image.asset(
                     imageString,
-                    width: 50,
-                    height: 50,
+                    width: 40,
+                    height: 40,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -101,13 +102,13 @@ class CustomItemCardWithEdit extends StatelessWidget {
                         title,
                         style: getSemiBoldStyle(
                             color: ColorManager.lightGrey1,
-                            fontSize: FontSize.s20),
+                            fontSize: FontSize.s18),
                       ),
                       Text(
                         subtitle,
                         style: getRegularStyle(
                             color: ColorManager.lightGrey2,
-                            fontSize: FontSize.s20),
+                            fontSize: FontSize.s14),
                       ),
                     ],
                   ),

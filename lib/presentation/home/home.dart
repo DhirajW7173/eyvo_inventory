@@ -558,12 +558,15 @@ class _HomeViewState extends State<HomeView> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset(ImageAssets.logoutIcon),
+                              Image.asset(ImageAssets.logoutIcon,
+                                  width: 20, height: 20),
                               const SizedBox(width: 10),
-                              Text(AppStrings.logout,
-                                  style: getSemiBoldStyle(
-                                      color: ColorManager.orange,
-                                      fontSize: FontSize.s22_5))
+                              Text(
+                                AppStrings.logout,
+                                style: getSemiBoldStyle(
+                                    color: ColorManager.orange,
+                                    fontSize: FontSize.s20),
+                              )
                             ],
                           )
                         ],

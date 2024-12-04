@@ -125,28 +125,32 @@ class _RegionListViewState extends State<RegionListView> {
                         SizedBox(height: topPadding),
                         SizedBox(
                           width: displayWidth(context),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 18),
-                                child: Text(
-                                  widget.selectedTitle,
-                                  style: getBoldStyle(
-                                      color: ColorManager.darkBlue,
-                                      fontSize: FontSize.s27),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 10),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18),
+                                  child: Text(
+                                    widget.selectedTitle,
+                                    style: getBoldStyle(
+                                        color: ColorManager.darkBlue,
+                                        fontSize: FontSize.s21),
+                                  ),
                                 ),
-                              ),
-                              const Spacer(),
-                              SizedBox(
-                                height: 30,
-                                child: CustomImageButton(
-                                  imageString: ImageAssets.closeIcon,
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                ),
-                              )
-                            ],
+                                const Spacer(),
+                                SizedBox(
+                                  //height: 24,
+                                  child: CustomImageButton(
+                                    imageString: ImageAssets.closeIcon,
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(height: 30),

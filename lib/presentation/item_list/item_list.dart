@@ -178,11 +178,13 @@ class _ItemListViewState extends State<ItemListView> with RouteAware {
         backgroundColor: ColorManager.primary,
         appBar: AppBar(
           backgroundColor: ColorManager.darkBlue,
-          title: Text(AppStrings.itemListing,
-              style: getBoldStyle(
-                  color: ColorManager.white, fontSize: FontSize.s27)),
+          title: Text(
+            AppStrings.itemListing,
+            style:
+                getBoldStyle(color: ColorManager.white, fontSize: FontSize.s20),
+          ),
           leading: IconButton(
-            icon: Image.asset(ImageAssets.backButton),
+            icon: Image.asset(ImageAssets.backButton, width: 20, height: 20),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -198,6 +200,7 @@ class _ItemListViewState extends State<ItemListView> with RouteAware {
                       padding: const EdgeInsets.all(18.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: CustomSearchField(
@@ -210,14 +213,19 @@ class _ItemListViewState extends State<ItemListView> with RouteAware {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isListViewSelected = true;
-                                    });
-                                  },
-                                  icon: Image.asset(isListViewSelected
+                                onPressed: () {
+                                  setState(() {
+                                    isListViewSelected = true;
+                                  });
+                                },
+                                icon: Image.asset(
+                                  isListViewSelected
                                       ? ImageAssets.boxSelectedIcon
-                                      : ImageAssets.boxIcon)),
+                                      : ImageAssets.boxIcon,
+                                  width: 32,
+                                  height: 32,
+                                ),
+                              ),
                               const SizedBox(width: 5),
                               Container(
                                 color: ColorManager.lightBlue2,
@@ -226,14 +234,15 @@ class _ItemListViewState extends State<ItemListView> with RouteAware {
                               ),
                               const SizedBox(width: 5),
                               IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isListViewSelected = false;
-                                    });
-                                  },
-                                  icon: Image.asset(isListViewSelected
-                                      ? ImageAssets.gridIcon
-                                      : ImageAssets.gridSelectedIcon)),
+                                onPressed: () {
+                                  setState(() {
+                                    isListViewSelected = false;
+                                  });
+                                },
+                                icon: Image.asset(isListViewSelected
+                                    ? ImageAssets.gridIcon
+                                    : ImageAssets.gridSelectedIcon),
+                              ),
                             ],
                           ),
                         ],

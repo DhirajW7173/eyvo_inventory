@@ -161,11 +161,13 @@ class _SelectOrderViewState extends State<SelectOrderView> {
         backgroundColor: ColorManager.primary,
         appBar: AppBar(
           backgroundColor: ColorManager.darkBlue,
-          title: Text(AppStrings.selectOrder,
-              style: getBoldStyle(
-                  color: ColorManager.white, fontSize: FontSize.s27)),
+          title: Text(
+            AppStrings.selectOrder,
+            style:
+                getBoldStyle(color: ColorManager.white, fontSize: FontSize.s20),
+          ),
           leading: IconButton(
-            icon: Image.asset(ImageAssets.backButton),
+            icon: Image.asset(ImageAssets.backButton, width: 20, height: 20),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -199,10 +201,12 @@ class _SelectOrderViewState extends State<SelectOrderView> {
                                   Image.asset(
                                       width: displayWidth(context) * 0.5,
                                       ImageAssets.noRecordFoundIcon),
-                                  Text(errorText,
-                                      style: getRegularStyle(
-                                          color: ColorManager.lightGrey,
-                                          fontSize: FontSize.s17)),
+                                  Text(
+                                    errorText,
+                                    style: getRegularStyle(
+                                        color: ColorManager.lightGrey,
+                                        fontSize: FontSize.s17),
+                                  ),
                                   const Spacer()
                                 ],
                               )),
@@ -217,10 +221,13 @@ class _SelectOrderViewState extends State<SelectOrderView> {
                                       !isLoading &&
                                       !isLoadMore
                                   ? Center(
-                                      child: Text(errorText,
-                                          style: getRegularStyle(
-                                              color: ColorManager.black,
-                                              fontSize: FontSize.s27)))
+                                      child: Text(
+                                        errorText,
+                                        style: getRegularStyle(
+                                            color: ColorManager.black,
+                                            fontSize: FontSize.s27),
+                                      ),
+                                    )
                                   : NotificationListener<ScrollNotification>(
                                       onNotification:
                                           (ScrollNotification notification) {
@@ -251,28 +258,29 @@ class _SelectOrderViewState extends State<SelectOrderView> {
                                               return const SizedBox();
                                             }
                                             return const Center(
-                                                child:
-                                                    CustomProgressIndicator());
+                                              child: CustomProgressIndicator(),
+                                            );
                                           }
                                           return Padding(
                                             padding: const EdgeInsets.all(8.0),
                                             child: ListTile(
                                               title: Text(
-                                                  orderItems[index].orderNumber,
-                                                  style: getSemiBoldStyle(
-                                                      color: ColorManager.black,
-                                                      fontSize:
-                                                          FontSize.s27_75)),
+                                                orderItems[index].orderNumber,
+                                                style: getSemiBoldStyle(
+                                                    color: ColorManager.black,
+                                                    fontSize: FontSize.s20),
+                                              ),
                                               onTap: () {
                                                 navigateToScreen(
-                                                    context,
-                                                    ReceivedItemListView(
-                                                      orderNumber:
-                                                          orderItems[index]
-                                                              .orderNumber,
-                                                      orderId: orderItems[index]
-                                                          .orderId,
-                                                    ));
+                                                  context,
+                                                  ReceivedItemListView(
+                                                    orderNumber:
+                                                        orderItems[index]
+                                                            .orderNumber,
+                                                    orderId: orderItems[index]
+                                                        .orderId,
+                                                  ),
+                                                );
                                               },
                                             ),
                                           );

@@ -122,27 +122,31 @@ class _LocationListViewState extends State<LocationListView> {
                         SizedBox(height: topPadding),
                         SizedBox(
                           width: displayWidth(context),
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 18),
-                                child: Text(
-                                  widget.selectedTitle,
-                                  style: getBoldStyle(
-                                      color: ColorManager.darkBlue,
-                                      fontSize: FontSize.s31_5),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 10),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 18),
+                                  child: Text(
+                                    widget.selectedTitle,
+                                    style: getBoldStyle(
+                                        color: ColorManager.darkBlue,
+                                        fontSize: FontSize.s20),
+                                  ),
                                 ),
-                              ),
-                              const Spacer(),
-                              SizedBox(
-                                height: 30,
-                                child: CustomImageButton(
-                                    imageString: ImageAssets.closeIcon,
-                                    onTap: () {
-                                      Navigator.pop(context);
-                                    }),
-                              )
-                            ],
+                                const Spacer(),
+                                SizedBox(
+                                  // height: 30,
+                                  child: CustomImageButton(
+                                      imageString: ImageAssets.closeIcon,
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      }),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         const SizedBox(height: 30),
@@ -171,16 +175,18 @@ class _LocationListViewState extends State<LocationListView> {
                                     return Padding(
                                       padding: const EdgeInsets.all(0.0),
                                       child: ListTile(
-                                        title: Text(item.locationCode,
-                                            style: item.locationCode ==
-                                                    widget.selectedItem
-                                                ? getMediumStyle(
-                                                    color: ColorManager.orange2,
-                                                    fontSize: FontSize.s23_25)
-                                                : getRegularStyle(
-                                                    color:
-                                                        ColorManager.lightGrey2,
-                                                    fontSize: FontSize.s23_25)),
+                                        title: Text(
+                                          item.locationCode,
+                                          style: item.locationCode ==
+                                                  widget.selectedItem
+                                              ? getMediumStyle(
+                                                  color: ColorManager.orange2,
+                                                  fontSize: FontSize.s21)
+                                              : getRegularStyle(
+                                                  color:
+                                                      ColorManager.lightGrey2,
+                                                  fontSize: FontSize.s21),
+                                        ),
                                         onTap: () {
                                           SharedPrefs().selectedLocation =
                                               item.locationCode;

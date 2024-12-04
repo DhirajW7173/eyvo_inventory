@@ -63,7 +63,6 @@ class ApiService {
 
   Future<Map<String, dynamic>?> getRequest(
       BuildContext context, String endpoint, Map<String, dynamic> data) async {
-    LoggerData.dataLog("@@@@@:${baseUrl}");
     final url = Uri.encodeFull('$baseUrl/$endpoint');
     debugPrint('PS:- URL: $url');
     final token = SharedPrefs().jwtToken;
@@ -87,7 +86,6 @@ class ApiService {
 
   Future<Map<String, dynamic>?> postRequest(
       BuildContext context, String endpoint, Map<String, dynamic> data) async {
-    LoggerData.dataLog("@@@@@:${baseUrl}");
     final url = Uri.encodeFull('$baseUrl/$endpoint');
     try {
       debugPrint('PS:- URL: $url');

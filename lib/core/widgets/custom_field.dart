@@ -44,6 +44,7 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
           LengthLimitingTextInputFormatter(AppConstants.maxCharacters),
         ],
         decoration: InputDecoration(
+          contentPadding: const EdgeInsets.only(left: 10),
           // hint style
           hintStyle: getRegularStyle(
               color: ColorManager.lightGrey3,
@@ -79,7 +80,7 @@ class _CustomSearchFieldState extends State<CustomSearchField> {
           ),
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 25),
-            child: Image.asset(ImageAssets.searchIcon, width: 30, height: 30),
+            child: Image.asset(ImageAssets.searchIcon, width: 16, height: 16),
           ),
         ),
       ),

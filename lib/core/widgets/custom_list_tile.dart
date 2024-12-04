@@ -230,8 +230,9 @@ class MenuItemListTile extends StatelessWidget {
           height: 80,
           width: displayWidth(context),
           decoration: BoxDecoration(
-              color: ColorManager.white,
-              borderRadius: BorderRadius.circular(8)),
+            color: ColorManager.white,
+            borderRadius: BorderRadius.circular(8),
+          ),
           child: Padding(
             padding: const EdgeInsets.only(top: 20),
             child: ListTile(
@@ -239,12 +240,13 @@ class MenuItemListTile extends StatelessWidget {
               title: Row(
                 children: [
                   const SizedBox(width: 5),
-                  Image.asset(imageString),
-                  const SizedBox(width: 15),
-                  Text(title,
-                      style: getRegularStyle(
-                          color: ColorManager.lightGrey1,
-                          fontSize: FontSize.s20))
+                  Image.asset(imageString, width: 16, height: 16),
+                  const SizedBox(width: 10),
+                  Text(
+                    title,
+                    style: getRegularStyle(
+                        color: ColorManager.lightGrey1, fontSize: FontSize.s16),
+                  )
                 ],
               ),
             ),

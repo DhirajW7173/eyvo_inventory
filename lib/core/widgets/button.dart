@@ -157,7 +157,10 @@ class CustomTextActionButton extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
             shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10))),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
             backgroundColor: backgroundColor,
             shadowColor: Colors.transparent,
             side: BorderSide(color: borderColor)),
