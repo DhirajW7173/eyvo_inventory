@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "135364675440",
+    "project_id": "newinventory-305a4",
+    "storage_bucket": "newinventory-305a4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:135364675440:android:f1b4543f69ef64318d31b5",
+        "android_client_info": {
+          "package_name": "com.example.eyvo_inventory"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGY1Yz0_ETxuS-5iE2jij1vCr3f7mkrBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
