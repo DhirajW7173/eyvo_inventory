@@ -1,6 +1,9 @@
+import 'package:eyvo_inventory/Notification/notification_page.dart';
 import 'package:eyvo_inventory/core/resources/routes_manager.dart';
 import 'package:eyvo_inventory/core/resources/theme_manager.dart';
 import 'package:flutter/material.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatefulWidget {
   const MyApp._internal(); // private named constructor
@@ -22,6 +25,10 @@ class _MyAppState extends State<MyApp> {
       onGenerateRoute: RouteGenerator.getRoute,
       initialRoute: Routes.splashRoute,
       theme: AppTheme.lightThemeMode,
+      navigatorKey: navigatorKey,
+      routes: {
+        NotificationPage.route: (context) => const NotificationPage(),
+      },
       builder: (context, child) {
         final MediaQueryData data = MediaQuery.of(context);
         return MediaQuery(

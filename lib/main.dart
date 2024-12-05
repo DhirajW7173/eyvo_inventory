@@ -1,5 +1,5 @@
 import 'package:eyvo_inventory/Environment/environment.dart';
-import 'package:eyvo_inventory/Notification/notification_services.dart';
+import 'package:eyvo_inventory/Notification/Services/notification_services.dart';
 import 'package:eyvo_inventory/app/app_prefs.dart';
 import 'package:eyvo_inventory/log_data.dart/logger_data.dart';
 import 'package:flutter/material.dart';

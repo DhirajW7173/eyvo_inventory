@@ -54,6 +54,7 @@ dependencies:
   fluttertoast: ^8.2.8
   firebase_core: ^3.8.0
   firebase_messaging: ^15.1.5
+  flutter_local_notifications: ^18.0.1
 
 
 
