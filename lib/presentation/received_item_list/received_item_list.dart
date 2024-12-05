@@ -319,11 +319,13 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
         backgroundColor: ColorManager.primary,
         appBar: AppBar(
           backgroundColor: ColorManager.darkBlue,
-          title: Text(AppStrings.grItemListing,
-              style: getBoldStyle(
-                  color: ColorManager.white, fontSize: FontSize.s27)),
+          title: Text(
+            AppStrings.grItemListing,
+            style:
+                getBoldStyle(color: ColorManager.white, fontSize: FontSize.s20),
+          ),
           leading: IconButton(
-            icon: Image.asset(ImageAssets.backButton),
+            icon: Image.asset(ImageAssets.backButton, height: 20, width: 20),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -510,7 +512,7 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
                               AppStrings.orderNumberDetail + widget.orderNumber,
                               style: getBoldStyle(
                                   color: ColorManager.darkBlue,
-                                  fontSize: FontSize.s27),
+                                  fontSize: FontSize.s20),
                             ),
                           ),
                           const Spacer(),
@@ -520,12 +522,13 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
                                   ? Padding(
                                       padding: const EdgeInsets.only(right: 18),
                                       child: IconButton(
-                                          onPressed: () {
-                                            printReceiveGoods(
-                                                widget.orderId, 0, "");
-                                          },
-                                          icon: Image.asset(
-                                              ImageAssets.printIcon)),
+                                        onPressed: () {
+                                          printReceiveGoods(
+                                              widget.orderId, 0, "");
+                                        },
+                                        icon:
+                                            Image.asset(ImageAssets.printIcon),
+                                      ),
                                     )
                                   : const SizedBox()
                         ],
@@ -538,14 +541,15 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
                     right: 0,
                     child: Container(
                       width: displayWidth(context),
-                      height: 120,
+                      height: 80,
                       color: isGoodsReceived
                           ? isGenerateLabelEnabled
                               ? ColorManager.white
                               : Colors.transparent
                           : Colors.transparent,
                       child: Padding(
-                        padding: const EdgeInsets.all(18.0),
+                        padding: const EdgeInsets.only(
+                            left: 14, right: 14, top: 6, bottom: 10),
                         child: isGoodsReceived
                             ? isGenerateLabelEnabled
                                 ? CustomButton(
@@ -604,33 +608,34 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
                                           SizedBox(
                                             width: displayWidth(context),
                                             child: Text(
-                                                AppStrings.editReceiveQuantity,
-                                                style: getBoldStyle(
-                                                    color:
-                                                        ColorManager.lightGrey2,
-                                                    fontSize: FontSize.s25_5)),
+                                              AppStrings.editReceiveQuantity,
+                                              style: getBoldStyle(
+                                                  color:
+                                                      ColorManager.lightGrey2,
+                                                  fontSize: FontSize.s16),
+                                            ),
                                           ),
                                           const SizedBox(height: 20),
                                           Row(
                                             children: [
                                               Container(
                                                 decoration: BoxDecoration(
-                                                    color:
-                                                        ColorManager.darkBlue,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4)),
+                                                  color: ColorManager.darkBlue,
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                ),
                                                 width: 70,
                                                 height: 50,
                                                 child: IconButton(
-                                                    // iconSize: 40,
-                                                    onPressed: () {
-                                                      decreaseReceivedQuantity();
-                                                    },
-                                                    icon: Image.asset(
-                                                        width: 30,
-                                                        height: 30,
-                                                        ImageAssets.minusIcon)),
+                                                  // iconSize: 40,
+                                                  onPressed: () {
+                                                    decreaseReceivedQuantity();
+                                                  },
+                                                  icon: Image.asset(
+                                                      width: 30,
+                                                      height: 30,
+                                                      ImageAssets.minusIcon),
+                                                ),
                                               ),
                                               const Spacer(),
                                               Container(
@@ -713,18 +718,18 @@ class _ReceivedItemListViewState extends State<ReceivedItemListView>
                             child: Padding(
                               padding: const EdgeInsets.only(right: 10),
                               child: IconButton(
-                                  onPressed: () {
-                                    if (editQuantityController
-                                        .text.isNotEmpty) {
-                                      updateReceivedQuantity();
-                                    } else {
-                                      showErrorDialog(
-                                          context,
-                                          AppStrings.quantityCannotBeBlank,
-                                          false);
-                                    }
-                                  },
-                                  icon: Image.asset(ImageAssets.tickIcon)),
+                                onPressed: () {
+                                  if (editQuantityController.text.isNotEmpty) {
+                                    updateReceivedQuantity();
+                                  } else {
+                                    showErrorDialog(
+                                        context,
+                                        AppStrings.quantityCannotBeBlank,
+                                        false);
+                                  }
+                                },
+                                icon: Image.asset(ImageAssets.tickIcon),
+                              ),
                             ),
                           ),
                         )

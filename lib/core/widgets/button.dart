@@ -19,7 +19,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 50,
+      height: 40,
       decoration: BoxDecoration(
         color: isDefault
             ? ColorManager.white
@@ -45,7 +45,7 @@ class CustomButton extends StatelessWidget {
                   : isEnabled
                       ? ColorManager.white
                       : ColorManager.darkGrey2,
-              fontSize: FontSize.s18),
+              fontSize: FontSize.s16),
         ),
       ),
     );

@@ -62,22 +62,25 @@ class _OrderItemListTileState extends State<OrderItemListTile> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text('${AppStrings.itemIDDetails}${widget.itemID}',
-                            textAlign: TextAlign.left,
-                            maxLines: 1,
-                            style: getSemiBoldStyle(
-                                color: widget.isSelected
-                                    ? ColorManager.white
-                                    : ColorManager.lightGrey1,
-                                fontSize: FontSize.s14)),
+                        Text(
+                          '${AppStrings.itemIDDetails}${widget.itemID}',
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          style: getSemiBoldStyle(
+                              color: widget.isSelected
+                                  ? ColorManager.white
+                                  : ColorManager.lightGrey1,
+                              fontSize: FontSize.s14),
+                        ),
                         Container(
                           height: 100,
                           width: 100,
                           decoration: BoxDecoration(
-                              color: ColorManager.white,
-                              border: Border.all(
-                                  color: ColorManager.grey4, width: 1.0),
-                              borderRadius: BorderRadius.circular(8)),
+                            color: ColorManager.white,
+                            border: Border.all(
+                                color: ColorManager.grey4, width: 1.0),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           child: Image.network(
                             widget.imageString,
                             fit: BoxFit.contain,
@@ -91,23 +94,27 @@ class _OrderItemListTileState extends State<OrderItemListTile> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           widget.title.isNotEmpty
-                              ? Text(widget.title,
+                              ? Text(
+                                  widget.title,
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
                                   style: getBoldStyle(
                                       color: widget.isSelected
                                           ? ColorManager.white
                                           : ColorManager.darkBlue,
-                                      fontSize: FontSize.s14))
+                                      fontSize: FontSize.s14),
+                                )
                               : const SizedBox(),
-                          Text(widget.subtitle,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: widget.title.isEmpty ? 4 : 3,
-                              style: getRegularStyle(
-                                  color: widget.isSelected
-                                      ? ColorManager.white
-                                      : ColorManager.lightGrey2,
-                                  fontSize: FontSize.s12))
+                          Text(
+                            widget.subtitle,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: widget.title.isEmpty ? 4 : 3,
+                            style: getRegularStyle(
+                                color: widget.isSelected
+                                    ? ColorManager.white
+                                    : ColorManager.lightGrey2,
+                                fontSize: FontSize.s12),
+                          )
                         ],
                       ),
                     ),
@@ -123,80 +130,89 @@ class _OrderItemListTileState extends State<OrderItemListTile> {
                           color: widget.isSelected
                               ? ColorManager.white
                               : ColorManager.lightGrey2,
-                          fontSize: FontSize.s20),
+                          fontSize: FontSize.s16),
                     ),
                     const Spacer(),
                     Stack(
                       children: [
                         SizedBox(
-                            child: Container(
-                          alignment: Alignment.topLeft,
-                          width: 170,
-                          height: 80,
-                          // color: ColorManager.green,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 10),
-                              GestureDetector(
-                                onTap: widget.onEdit,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 0),
-                                  child: Container(
-                                    alignment: Alignment.center,
-                                    width: 170,
-                                    height: 60,
-                                    decoration: BoxDecoration(
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            width: 170,
+                            height: 80,
+                            // color: ColorManager.green,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(height: 10),
+                                GestureDetector(
+                                  onTap: widget.onEdit,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 0),
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: 150,
+                                      height: 50,
+                                      decoration: BoxDecoration(
                                         color: widget.isSelected
                                             ? ColorManager.white
                                             : Colors.transparent,
                                         border: Border.all(
                                             color: ColorManager.grey4,
                                             width: 1.0),
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        const Spacer(),
-                                        Text(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Spacer(),
+                                          Text(
                                             getFormattedString(
                                                 widget.receivedQuantity),
                                             style: getSemiBoldStyle(
                                                 color: ColorManager.lightGrey1,
-                                                fontSize: FontSize.s21)),
-                                        const Spacer(),
-                                        IconButton(
+                                                fontSize: FontSize.s16),
+                                          ),
+                                          const Spacer(),
+                                          IconButton(
                                             onPressed: widget.onEdit,
                                             icon: Image.asset(
-                                                ImageAssets.dropDownIcon)),
-                                      ],
+                                                ImageAssets.dropDownIcon,
+                                                height: 8,
+                                                width: 8),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        )),
+                        ),
                         Positioned(
                           child: Padding(
                             padding: const EdgeInsets.only(left: 12, top: 0),
                             child: Container(
-                                width: 110,
-                                decoration: BoxDecoration(
-                                    color: ColorManager.white,
-                                    borderRadius: BorderRadius.circular(4)),
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 8, right: 8),
-                                  child: Text(AppStrings.receiveQuantity,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: getSemiBoldStyle(
-                                          color: ColorManager.lightGrey1,
-                                          fontSize: FontSize.s14)),
-                                )),
+                              //width: 110,
+                              decoration: BoxDecoration(
+                                  color: ColorManager.white,
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 8, right: 8),
+                                child: Text(
+                                  AppStrings.receiveQuantity,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: getSemiBoldStyle(
+                                      color: ColorManager.lightGrey1,
+                                      fontSize: FontSize.s14),
+                                ),
+                              ),
+                            ),
                           ),
                         )
                       ],
