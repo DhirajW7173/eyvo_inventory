@@ -133,7 +133,7 @@ class _ForgotUserIDViewState extends State<ForgotUserIDView> {
               children: [
                 SizedBox(height: topPadding),
                 Container(
-                  height: 26,
+                  height: 30,
                   alignment: Alignment.topRight,
                   width: displayWidth(context),
                   child: CustomImageButton(
@@ -152,11 +152,10 @@ class _ForgotUserIDViewState extends State<ForgotUserIDView> {
                 ),
                 const SizedBox(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 18, left: 18, right: 18),
-                    child: TitleHeader(
-                        titleText: AppStrings.forgotUserIDTitle,
-                        detailText: AppStrings.forgotUserIDSubTitle),
-                  ),
+                      padding: EdgeInsets.only(bottom: 18, left: 18, right: 18),
+                      child: TitleHeader(
+                          titleText: AppStrings.forgotUserIDTitle,
+                          detailText: AppStrings.forgotUserIDSubTitle)),
                 ),
                 const SizedBox(height: 10),
                 SizedBox(
